@@ -2,7 +2,8 @@
 Multistreaming  solution built on Livepeer.
 
 ## FEATURES x User Story
-* a homepage showing all streams, like this:
+
+1. a homepage showing all streams, like this:
 
 ![Screenshot from 2023-09-04 14-21-11](https://github.com/Digital-Artifacts/MULTI/assets/66562380/9bacaf46-8c9c-4a8d-affe-31086bd96903)
 
@@ -24,12 +25,12 @@ Multistreaming  solution built on Livepeer.
        - the comment button should open into a comment section for engagement with both streamer and other viewers 
      -  and share the stream.
 
- * User should easily be able to exit the live stream and return to the homepage or stream list with an 'X' button on the top-right of the screen.
+* User should easily be able to exit the live stream and return to the homepage or stream list with an 'X' button on the top-right of the screen.
 
- If a live stream ends while I'm watching, user should be notified once again with the option to like, share, and comment.
+* If a live stream ends while I'm watching, user should be notified once again with the option to like, share, and comment.
 
 
-* a user profile page that doubles as a dashboard where they can create and view their streams:
+2. a user profile page that doubles as a dashboard where they can create and view their streams:
 
 ![image](https://github.com/Digital-Artifacts/MULTI/assets/66562380/0adc8b09-99f4-4b5f-8ba3-a68ae4ec4ef2)
 
