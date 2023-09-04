@@ -30,6 +30,7 @@ Multistreaming  solution built on Livepeer.
 * If a live stream ends while I'm watching, user should be notified once again with the option to like, share, and comment.
 
 
+  
 #### 2. A user profile page that doubles as a dashboard where they can create and view their streams:
 
 ![image](https://github.com/Digital-Artifacts/MULTI/assets/66562380/0adc8b09-99f4-4b5f-8ba3-a68ae4ec4ef2)
