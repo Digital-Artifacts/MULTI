@@ -1,16 +1,15 @@
 'use client'
 
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import App from './App';
+import NavBar from "../components/NavBar"
 
-const Main = () => {
-  return (
-    <Router>
-      <App />
-    </Router>
-  );
-};
-
-export default Main;
+export default function Home() {
+  
+  return(
+    <main>
+    <NavBar />
+    <div className="">Onboarding Page</div>
+   
+    </main>
+  )
+}
 
