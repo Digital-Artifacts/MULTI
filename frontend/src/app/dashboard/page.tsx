@@ -1,12 +1,16 @@
 'use client'
 
 import NavBar from "@/components/NavBar"
+import  Footer  from "@/components/Footer"
 
 const dashboard = () => {
   return (
     <>
       <NavBar />
-      <div>user dashboard</div>
+      <div className="">
+        <p className="text-2xl text-center">User Dashboard</p>
+      </div>
+      <Footer />
     </>
     
   )
