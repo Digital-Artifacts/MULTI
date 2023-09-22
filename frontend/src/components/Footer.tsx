@@ -7,8 +7,8 @@ const Footer = () => {
     const githubProfileUrl='https://github.com/Digital-Artifacts/MULTI'
 
   return (
-    <div className='bg-purple-500 text-white p-4 text-center absolute bottom-0 w-full footer'>
-        <footer className='mt-auto'>
+    <div className='bg-purple-500 text-white p-4 flex flex-col  footer'>
+        <footer className=''>
         <a href={githubProfileUrl} target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} />
             <span>Github</span>
