@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 Int             @default(autoincrement())
+  userId             String          @unique @default("577da0e0-7339-44b4-b0c4-788b7c10409a")
+  username           String          @unique
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @default(now())
+  multistreamTargets StreamTargets[]
+  Stream             Stream[]
+}
+
+model StreamTargets {
+  id         Int     @default(autoincrement())
+  name       String  @unique
+  url        String
+  targetId   String  @unique
+  disabled   Boolean @default(false)
+  profile    String  @default("source")
+  videoOnly  Boolean @default(false)
+  createdAt  String
+  User       User?   @relation(fields: [userUserId], references: [userId])
+  userUserId String?
+  Stream     Stream? @relation(fields: [streamName], references: [name])
+  streamName String?
+}
+
+model Stream {
+  name               String          @unique
+  id                 String          @unique
+  creatorId          String
+  lastSeen           String
+  isActive           Boolean
+  isHealthy          Boolean
+  createdAt          BigInt
+  parentId           String
+  streamKey          String
+  playbackId         String
+  playbackPolicy     String
+  profiles           Json
+  record             Boolean
+  multistreamTargets StreamTargets[]
+  suspended          Boolean
+  User               User?           @relation(fields: [creatorId], references: [userId])
+}
