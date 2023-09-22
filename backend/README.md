@@ -1,2 +1,3 @@
 # MULTI
-Multistreaming  solution built on Livepeer.
+
+Multistreaming solution built on Livepeer.
