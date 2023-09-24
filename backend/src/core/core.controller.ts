@@ -15,7 +15,7 @@ export class CoreController {
   @Get('/stream')
   async getStreams(
     @Query('username') getUserStreamsDto: GetUserStreamsDto,
-  ): Promise<any> {
+  ): Promise<Stream[]> {
     return await this.coreService.getStream(getUserStreamsDto);
   }
 

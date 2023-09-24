@@ -137,13 +137,16 @@ export class CoreService {
     }
 
     try {
+      // make request to livepeer endpoint to create stream
       const response = await this.livepeerService.createStream(createStreamDto);
 
+      // transform livepeer response to preferred structure
       const data = await transformLivepeerResponse(
         response,
         streamTargets.multistreamTargets,
       );
 
+      // store transformed response
       const createEntry = await this.streamService.createStream(data);
       return createEntry;
     } catch (error) {
