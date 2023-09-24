@@ -8,11 +8,11 @@ import { StreamTargets } from '@prisma/client';
 export class CoreController {
   constructor(private coreService: CoreService) { }
 
-  @Get('/stream')
+  @Post('/stream')
   async createStream(
     @Body(new ValidatorPipe()) createStreamDto: LivepeerCreateStreamDto,
   ): Promise<any> {
-    await this.coreService.createStream(createStreamDto);
+    return await this.coreService.createStream(createStreamDto);
   }
 
   @Post('/stream-target')
@@ -26,8 +26,8 @@ export class CoreController {
     return res;
   }
 
-  // @Post('/user')
-  // async createUser(@Body() username: any) {
-  //   await this.coreService.createUser(username);
-  // }
+  @Post('/user')
+  async createUser(@Body() username: any) {
+    return await this.coreService.createUser(username);
+  }
 }

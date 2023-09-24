@@ -13,12 +13,12 @@ export class CoreService {
     private livepeerService: ILivepeerService,
   ) { }
 
-  // async createUser(username: any): Promise<any> {
-  //   const res = await this.streamService.createUser({
-  //     username: username.username,
-  //   });
-  // }
-  //
+  async createUser(username: any): Promise<any> {
+    const res = await this.streamService.createUser({
+      username: username.username,
+    });
+    return res;
+  }
 
   async createStreamTarget(
     createStreamTargetDto: CreateStreamTargetDto,
@@ -59,6 +59,7 @@ export class CoreService {
   }
 
   async createStream(createStreamDto: LivepeerCreateStreamDto): Promise<any> {
+    let streamTargets: any;
     try {
       // check if stream with same name already exists
       const stream = await this.streamService.Stream({
@@ -70,32 +71,21 @@ export class CoreService {
 
       if (stream) throw new ConflictException();
 
-      const multistream = createStreamDto.multistream;
-      console.log(multistream);
-      console.log({
-        OR: multistream.targets.map((elem) => {
-          elem.name;
-        }),
-      });
-      return;
-
       // check if multistream target exists for the user
-      const streamTargets = await this.streamService.streamTargetsForUser(
+      streamTargets = await this.streamService.streamTargetsForUser(
         {
-          AND: [
+          OR: [
             {
               userId: createStreamDto.userId,
             },
             {
               multistreamTargets: {
                 every: {
-                  OR: [
-                    {
-                      name: {
-                        contains: 'twitch',
-                      },
+                  OR: createStreamDto.multistream.targets.map((elem) => ({
+                    name: {
+                      contains: elem.name,
                     },
-                  ],
+                  })),
                 },
               },
             },
@@ -105,32 +95,41 @@ export class CoreService {
           multistreamTargets: {
             where: {
               name: {
-                in: ['createStreamDto.multistream.targets.map((elem) => elem)'],
+                in: createStreamDto.multistream.targets.map(
+                  (elem) => elem.name,
+                ),
               },
             },
           },
         },
       );
 
-      console.log(streamTargets);
-      const multistreamTargets = await this.streamService.streamForUser({
-        userId: createStreamDto.creatorId,
-      });
+      // transform client request to include multistream information
+      delete createStreamDto.userId;
+      delete createStreamDto.multistream.targets;
+      createStreamDto.multistream.targets =
+        streamTargets.multistreamTargets.map(
+          (target: { targetId: string; profile: string }) => ({
+            id: target.targetId,
+            profile: target.profile,
+          }),
+        );
     } catch (error) {
       ExceptionHandler(error);
     }
 
-    // try {
-    //   const response = await this.livepeerService.createStream(createStreamDto);
-    //   console.log(response);
-    //
-    //   const data = await transformLivepeerResponse(response.data[0]);
-    //
-    //   const createEntry = await this.streamService.createStream(data);
-    //   console.log(createEntry);
-    //   return createEntry;
-    // } catch (error) {
-    //   ExceptionHandler(error);
-    // }
+    try {
+      const response = await this.livepeerService.createStream(createStreamDto);
+
+      const data = await transformLivepeerResponse(
+        response,
+        streamTargets.multistreamTargets,
+      );
+
+      const createEntry = await this.streamService.createStream(data);
+      return createEntry;
+    } catch (error) {
+      ExceptionHandler(error);
+    }
   }
 }
