@@ -14,6 +14,15 @@ export class StreamService {
     });
   }
 
+  async Streams(user: Prisma.UserWhereUniqueInput): Promise<any | null> {
+    return this.prisma.user.findUnique({
+      where: user,
+      include: {
+        Stream: true,
+      },
+    });
+  }
+
   async streamForUser(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
   ): Promise<any | null> {

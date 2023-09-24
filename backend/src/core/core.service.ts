@@ -1,10 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { StreamTargets } from '@prisma/client';
+import { Stream, StreamTargets } from '@prisma/client';
 import { ILivepeerService } from 'src/abstracts';
-import { CreateStreamTargetDto, LivepeerCreateStreamDto } from 'src/dto';
+import {
+  CreateStreamTargetDto,
+  GetUserStreamsDto,
+  LivepeerCreateStreamDto,
+} from 'src/dto';
 import { transformLivepeerResponse } from 'src/dto/helpers.transformers';
 import { StreamService } from 'src/frameworks/prisma/service/stream.service';
-import { ConflictException, ExceptionHandler } from 'src/responses/errors';
+import {
+  ConflictException,
+  ExceptionHandler,
+  NotFoundException,
+} from 'src/responses/errors';
 
 @Injectable()
 export class CoreService {
@@ -12,6 +20,16 @@ export class CoreService {
     private streamService: StreamService,
     private livepeerService: ILivepeerService,
   ) { }
+
+  async getStream(username: any): Promise<Stream[]> {
+    const streams = await this.streamService.Streams({
+      username,
+    });
+
+    if (!streams) throw new NotFoundException();
+
+    return streams.Stream;
+  }
 
   async createUser(username: any): Promise<any> {
     const res = await this.streamService.createUser({
