@@ -42,11 +42,11 @@ model Stream {
   lastSeen           String
   isActive           Boolean
   isHealthy          Boolean
-  createdAt          BigInt
+  createdAt          String
   parentId           String
   streamKey          String
   playbackId         String
-  playbackPolicy     String
+  playbackPolicy     Json
   profiles           Json
   record             Boolean
   multistreamTargets StreamTargets[]
