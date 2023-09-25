@@ -1,3 +1,7 @@
+export class GetUserStreamsDto {
+  public username: string;
+}
+
 export class LivepeerCreateStreamDto {
   public userId: string;
   public name: string;
