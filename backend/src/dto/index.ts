@@ -1,1 +1,1 @@
-export * from './stream.dto.js';
+export * from './stream.dto';
