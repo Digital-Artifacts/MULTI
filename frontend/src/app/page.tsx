@@ -34,16 +34,16 @@ export default function Home() {
   ];
 
   return (
-    <main>
+    <main className="bg-purple-400">
       <NavBar />
       <div className="px-4 py-8 mt-20 text-center">
         <h1 className="text-4xl font-semibold mb-8">
-          Welcome to Our Multistreaming Platform
+          Welcome to Multi
         </h1>
         <p className="text-lg mb-12">
-          Multistreaming allows you to reach a broader audience and engage with
+          Multi allows you to reach a broader audience and engage with
           viewers on multiple streaming platforms simultaneously. Whether you're
-          a gamer, content creator, or business professional, multistreaming is
+          a gamer, content creator, or business professional, Multi is
           the key to expanding your online presence.
         </p>
       </div>
@@ -81,5 +81,6 @@ export default function Home() {
 
       <Footer />
     </main>
+    
   );
 }
