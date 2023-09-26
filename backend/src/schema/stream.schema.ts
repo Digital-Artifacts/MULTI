@@ -26,7 +26,7 @@ export const CreateStreamSchema = Joi.object({
     then: Joi.object().required().messages({
       'object.required': 'webhookContext is required when type is "webhook"',
     }),
-    otherwise: Joi.forbidden().messages({
+    otherwise: Joi.forbidden().default({}).messages({
       'object.invalid': 'WebhookContext not needed when type is not "webhook"',
     }),
   }),

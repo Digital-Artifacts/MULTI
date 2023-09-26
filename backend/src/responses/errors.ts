@@ -16,7 +16,7 @@ export class NotFoundException extends HttpException {
   constructor(
     message = 'The resource you were looking for was not found on this server.',
   ) {
-    super(message, HttpStatus.NOT_FOUND);
+    super(message, HttpStatus.OK);
   }
 }
 

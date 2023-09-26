@@ -14,8 +14,7 @@ export class LivepeerService extends RestService implements ILivepeerService {
   async createStream(createStreamDto: LivepeerCreateStreamDto): Promise<any> {
     try {
       const createStream = await this.post('/stream', createStreamDto);
-
-      const response = createStream[0];
+      const response = createStream.data;
       return response;
     } catch (error) {
       console.warn(error);

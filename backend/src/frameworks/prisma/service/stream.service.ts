@@ -14,6 +14,15 @@ export class StreamService {
     });
   }
 
+  async Streams(user: Prisma.UserWhereUniqueInput): Promise<any | null> {
+    return this.prisma.user.findUnique({
+      where: user,
+      include: {
+        Stream: true,
+      },
+    });
+  }
+
   async streamForUser(
     userWhereUniqueInput: Prisma.UserWhereUniqueInput,
   ): Promise<any | null> {
@@ -29,6 +38,14 @@ export class StreamService {
     });
   }
 
+  async StreamTarget(
+    where: Prisma.StreamTargetsWhereUniqueInput,
+  ): Promise<StreamTargets | null> {
+    return this.prisma.streamTargets.findUnique({
+      where,
+    });
+  }
+
   async streamTargetsForUser(
     where: any,
     select: Prisma.UserSelect,
@@ -39,23 +56,15 @@ export class StreamService {
     });
   }
 
-  async createStream(data: Prisma.StreamUncheckedCreateInput): Promise<Stream> {
-    return this.prisma.stream.create({
-      data,
-    });
-  }
-
   async createUser(data: Prisma.UserUncheckedCreateInput): Promise<User> {
     return this.prisma.user.create({
       data,
     });
   }
 
-  async StreamTarget(
-    where: Prisma.StreamTargetsWhereUniqueInput,
-  ): Promise<StreamTargets | null> {
-    return this.prisma.streamTargets.findUnique({
-      where,
+  async createStream(data: Prisma.StreamUncheckedCreateInput): Promise<Stream> {
+    return this.prisma.stream.create({
+      data,
     });
   }
 

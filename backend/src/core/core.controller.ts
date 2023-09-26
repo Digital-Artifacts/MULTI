@@ -1,18 +1,29 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CreateStreamTargetDto, LivepeerCreateStreamDto } from 'src/dto';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  CreateStreamTargetDto,
+  GetUserStreamsDto,
+  LivepeerCreateStreamDto,
+} from 'src/dto';
 import { ValidatorPipe, CreateStreamTargetPipe } from 'src/validator/pipe';
 import { CoreService } from './core.service';
-import { StreamTargets } from '@prisma/client';
+import { StreamTargets, Stream } from '@prisma/client';
 
 @Controller('core')
 export class CoreController {
   constructor(private coreService: CoreService) { }
 
   @Get('/stream')
+  async getStreams(
+    @Query('username') getUserStreamsDto: GetUserStreamsDto,
+  ): Promise<Stream[]> {
+    return await this.coreService.getStream(getUserStreamsDto);
+  }
+
+  @Post('/stream')
   async createStream(
     @Body(new ValidatorPipe()) createStreamDto: LivepeerCreateStreamDto,
   ): Promise<any> {
-    await this.coreService.createStream(createStreamDto);
+    return await this.coreService.createStream(createStreamDto);
   }
 
   @Post('/stream-target')
@@ -26,8 +37,8 @@ export class CoreController {
     return res;
   }
 
-  // @Post('/user')
-  // async createUser(@Body() username: any) {
-  //   await this.coreService.createUser(username);
-  // }
+  @Post('/user')
+  async createUser(@Body() username: any) {
+    return await this.coreService.createUser(username);
+  }
 }
