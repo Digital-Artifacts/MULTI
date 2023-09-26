@@ -4,21 +4,22 @@ export const transformLivepeerResponse = async (
   data: any,
   streamTargets: [StreamTargets],
 ): Promise<Prisma.StreamUncheckedCreateInput> => {
+  console.log('transformer', data);
   return {
     name: data.name,
     id: data.id,
-    creatorId: data.creatorId,
-    lastSeen: data.lastSeen,
+    creatorId: data.userId,
+    lastSeen: data.lastSeen.toString(),
     isActive: data.isActive,
-    isHealthy: data.isHealthy,
-    parentId: data.parentId,
+    isHealthy: data.isHealthy || false,
+    parentId: data.parentId || '',
     streamKey: data.streamKey,
     playbackId: data.playbackId,
     playbackPolicy: data.playbackPolicy,
     profiles: data.profiles,
     record: data.record,
     suspended: data.suspended,
-    createdAt: data.createdAt,
+    createdAt: data.createdAt.toString(),
     multistreamTargets: {
       connect: streamTargets.map((elem) => ({ targetId: elem.targetId })),
     },
