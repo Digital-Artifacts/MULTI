@@ -5,6 +5,7 @@ import {
   CreateStreamTargetDto,
   GetUserStreamsDto,
   LivepeerCreateStreamDto,
+  PatchStreamDto,
 } from 'src/dto';
 import { transformLivepeerResponse } from 'src/dto/helpers.transformers';
 import { StreamService } from 'src/frameworks/prisma/service/stream.service';
@@ -21,10 +22,13 @@ export class CoreService {
     private livepeerService: ILivepeerService,
   ) { }
 
-  async getStream(username: any): Promise<Stream[]> {
-    const streams = await this.streamService.Streams({
-      username,
-    });
+  async getStreams(getUserStreamsDto: GetUserStreamsDto): Promise<Stream[]> {
+    const streams = await this.streamService.Streams(
+      {
+        username: getUserStreamsDto.username,
+      },
+      getUserStreamsDto.only_past_lives,
+    );
 
     if (!streams) throw new NotFoundException();
 
@@ -152,5 +156,16 @@ export class CoreService {
     } catch (error) {
       ExceptionHandler(error);
     }
+  }
+
+  async patchStream(patchStreamDto: PatchStreamDto): Promise<Stream> {
+    return this.streamService.updateStream({
+      where: {
+        id: patchStreamDto.streamId,
+      },
+      data: {
+        lastSeen: patchStreamDto.lastSeen,
+      },
+    });
   }
 }
