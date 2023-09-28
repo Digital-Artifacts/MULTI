@@ -1,5 +1,10 @@
 import * as Joi from 'joi';
 
+export const GetUserStreamsSchema = Joi.object({
+  username: Joi.string().required(),
+  only_past_lives: Joi.string().valid('yes', 'no').required(),
+});
+
 const multistream = Joi.object({
   targets: Joi.array().items(
     Joi.object({
@@ -49,4 +54,9 @@ export const streamTargetSchema = Joi.object({
     .required(),
   name: Joi.string().required(),
   userId: Joi.string().uuid().required(),
+});
+
+export const PatchStreamSchema = Joi.object({
+  streamId: Joi.string().uuid().required(),
+  lastSeen: Joi.number().greater(978307200).required(),
 });
