@@ -1,7 +1,8 @@
 'use client'
 
 import NavBar from "@/components/NavBar"
-// import  Footer  from "@/components/Footer"
+import  Footer  from "@/components/Footer"
+import Link from "next/link"
 
 const settings = () => {
   return (
@@ -107,21 +108,23 @@ const settings = () => {
 </label>
               </div>
               <div className="flex flex-row justify-center items-center">
+              <Link href="/live">
               <button className="relative block group items-center ">
-          <span className="absolute inset-0  bg-indigo-500  rounded-lg"></span>
-          <div className="transition bg-black relative border-2 rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
-            <div className="p-2 ">
-              <p className="text-xl font-outerSans font-medium">Submit</p>
-            </div>
-          </div>
-        </button>
-        </div>
+                <span className="absolute inset-0  bg-indigo-500  rounded-lg"></span>
+                <div className="transition bg-black relative border-2 rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+                <div className="p-2 ">
+                  <p className="text-xl font-outerSans font-medium">Submit</p>
+                </div>
+                </div>
+              </button>
+              </Link>
+              </div>
             </div>
   </div>
     
   </div>
   {/* Live Preview section */}
-  <div className="">
+  {/* <div className="">
   <div className="p-1 shadow-xl  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl">
             <div className=" bg-black sm:p-10 p-6 rounded-xl">
               <div className="">
@@ -143,14 +146,14 @@ const settings = () => {
         </button>
         </div> 
 
-          </div>
+          </div> */}
           
           
 </div>
 
       </div>
       
-      {/* <Footer /> */}
+      <Footer />
     </>
     
   )
