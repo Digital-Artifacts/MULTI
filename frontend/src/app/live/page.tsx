@@ -14,10 +14,6 @@ import LivepeerClient from '@/client';
 import LivePreview from './preview';
 import Footer from '@/components/Footer';
 
-// const client = createReactClient({
-//   provider: studioProvider({ apiKey: '36d8-xo3m-k4rk-0ieh' }),
-// });
-
 const Live = () => {
   const handleGoLive = () => {
     console.log("Going Live");
