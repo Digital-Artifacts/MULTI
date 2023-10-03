@@ -1,12 +1,15 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 import {
   CreateStreamTargetDto,
   GetUserStreamsDto,
   LivepeerCreateStreamDto,
+  PatchStreamDto,
 } from 'src/dto';
 import { ValidatorPipe, CreateStreamTargetPipe } from 'src/validator/pipe';
 import { CoreService } from './core.service';
 import { StreamTargets, Stream } from '@prisma/client';
+import { QueryValidatorPipe } from 'src/validator/query.pipe';
+import { PatchQueryValidatorPipe } from 'src/validator/patch.pipe';
 
 @Controller('core')
 export class CoreController {
@@ -14,15 +17,15 @@ export class CoreController {
 
   @Get('/stream')
   async getStreams(
-    @Query('username') getUserStreamsDto: GetUserStreamsDto,
+    @Query(new QueryValidatorPipe()) getUserStreamsDto: GetUserStreamsDto,
   ): Promise<Stream[]> {
-    return await this.coreService.getStream(getUserStreamsDto);
+    return await this.coreService.getStreams(getUserStreamsDto);
   }
 
   @Post('/stream')
   async createStream(
     @Body(new ValidatorPipe()) createStreamDto: LivepeerCreateStreamDto,
-  ): Promise<any> {
+  ): Promise<Stream> {
     return await this.coreService.createStream(createStreamDto);
   }
 
@@ -35,6 +38,13 @@ export class CoreController {
       createStreamTargetDto,
     );
     return res;
+  }
+
+  @Patch('/stream')
+  async patchStream(
+    @Query(new PatchQueryValidatorPipe()) patchStreamDto: PatchStreamDto,
+  ): Promise<Stream> {
+    return this.coreService.patchStream(patchStreamDto);
   }
 
   @Post('/user')

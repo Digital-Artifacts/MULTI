@@ -14,9 +14,27 @@ export class StreamService {
     });
   }
 
-  async Streams(user: Prisma.UserWhereUniqueInput): Promise<any | null> {
+  async Streams(
+    username: Prisma.UserWhereUniqueInput,
+    onlyPastLives: string,
+  ): Promise<any | null> {
+    if (onlyPastLives === 'yes') {
+      return this.prisma.user.findUnique({
+        where: username,
+        include: {
+          Stream: {
+            where: {
+              lastSeen: {
+                gt: '0',
+              },
+            },
+          },
+        },
+      });
+    }
+
     return this.prisma.user.findUnique({
-      where: user,
+      where: username,
       include: {
         Stream: true,
       },
@@ -74,5 +92,9 @@ export class StreamService {
     return this.prisma.streamTargets.create({
       data,
     });
+  }
+
+  async updateStream(args: Prisma.StreamUpdateArgs): Promise<Stream> {
+    return this.prisma.stream.update(args);
   }
 }
