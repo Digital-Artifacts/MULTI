@@ -7,6 +7,8 @@ import {
   studioProvider,
 } from '@livepeer/react';
 import { Broadcast } from '@livepeer/react';
+import Multistreams from './multistreams';
+
 
 
 
@@ -32,7 +34,7 @@ const LivePreview: React.FC<LivePreviewProps> = ({ onGoLive }) => {
                 {previewMode ? (
                   <Broadcast
                     title="You, Live (Preview)"
-                    streamKey="36d8-xo3m-k4rk-0ieh"
+                    streamKey=""
                     aspectRatio="1to1"
                     objectFit="cover"
                     showPipButton={true}
@@ -97,14 +99,21 @@ const LivePreview: React.FC<LivePreviewProps> = ({ onGoLive }) => {
                   />
                 )}
                 {previewMode && (
-                  <button onClick={handleGoLiveClick} className="mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
-                    Go Live
+                  <div className="flex justify-center  ">
+                  <button onClick={handleGoLiveClick} className="relative block group items-center ">
+                  <span className="absolute inset-0  bg-indigo-500  rounded-lg"></span>
+                  <div className="transition bg-black relative border-2 rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-1">
+                  <div className="p-2 ">
+                    <p className="text-xl font-outerSans font-medium">Go Live 📹</p>
+                  </div>
+                  </div>
                   </button>
+                  </div>
                 )}
               </div>
             </div>
           </div>
-          
+          <Multistreams />
         </div>
       </>
     );

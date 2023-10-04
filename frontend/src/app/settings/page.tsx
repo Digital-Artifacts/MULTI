@@ -156,6 +156,7 @@ const settings = () => {
       <Footer />
     </>
     
+    
   )
 }
 

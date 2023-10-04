@@ -7,7 +7,8 @@ const Footer = () => {
     const githubProfileUrl='https://github.com/Digital-Artifacts/MULTI'
 
   return (
-    <footer className='bg-purple-500 p-4' >
+    <div className="flex flex-col min-h-screen ">
+    <footer className='bg-purple-500 p-4 mt-auto ' >
     <div className="container mx-auto flex h-8 justify-between items-center">
       <a href={githubProfileUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '9px' }}>
         <FontAwesomeIcon icon={faGithub} />
@@ -15,6 +16,7 @@ const Footer = () => {
       </a>
     </div>
   </footer>
+  </div>
   )
 }
 

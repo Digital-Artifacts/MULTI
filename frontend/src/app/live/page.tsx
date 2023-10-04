@@ -9,7 +9,7 @@ import {
 import { Broadcast } from '@livepeer/react';
 
 import NavBar from "@/components/NavBar";
-import Multistreams from './multistreams';
+
 import LivepeerClient from '@/client';
 import LivePreview from './preview';
 import Footer from '@/components/Footer';
@@ -25,12 +25,12 @@ const Live = () => {
       <LivepeerConfig client={LivepeerClient}>
         <div>
           <LivePreview onGoLive={handleGoLive} />
-          <Multistreams />
+          
         </div>
         
-        {/* <Footer /> */}
+       
       </LivepeerConfig>
-      <Footer />
+      <Footer /> 
     </main>
 
   );
