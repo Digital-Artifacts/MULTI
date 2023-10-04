@@ -1,39 +1,43 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react'
+import { useState } from 'react';
+import LivepeerClient from '@/client';
+import LivePage from './livepage';
+import NavBar from '@/components/NavBar';
+import Multistreams from './multistreams';
+import LivePreview from '../settings/preview';
+
 import {
   LivepeerConfig,
   createReactClient,
   studioProvider,
 } from '@livepeer/react';
-import { Broadcast } from '@livepeer/react';
-
-import NavBar from "@/components/NavBar";
-import Multistreams from './multistreams';
-import LivepeerClient from '@/client';
-import LivePreview from './preview';
-import Footer from '@/components/Footer';
 
 const Live = () => {
-  const handleGoLive = () => {
-    console.log("Going Live");
+  const [isLive, setIsLive] = useState(false);
+
+  const handleGoLiveClick = () => {
+    setIsLive(true);
   };
+
 
   return (
     <main>
-      <NavBar />
+    <NavBar />
       <LivepeerConfig client={LivepeerClient}>
+      <div>
+        <LivePage />
+    </div>
+
         <div>
-          <LivePreview onGoLive={handleGoLive} />
           <Multistreams />
         </div>
         
-        {/* <Footer /> */}
       </LivepeerConfig>
-      <Footer />
+    <NavBar />
     </main>
+  )
+}
 
-  );
-};
-
-export default Live;
+export default Live
