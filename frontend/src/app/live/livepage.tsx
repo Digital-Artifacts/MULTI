@@ -1,18 +1,25 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Broadcast } from '@livepeer/react';
+import LivePreview from '../settings/preview';
 
 
 const LivePage = () => {
+  const [goLiveClicked, setGoLiveClicked] = useState(false);
   
+  useEffect(() => {
+    if (goLiveClicked) {
+
+    }
+  }, [goLiveClicked])
 
   return (
     <div>
       {/* The actual live stream screen */}
       <Broadcast
                     title="You are Live"
-                    streamKey='0544-ghxt-e2n6-f4y3'
+                    streamKey=''
                     aspectRatio="1to1"
                     objectFit="cover"
                     showPipButton={true}

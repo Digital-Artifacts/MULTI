@@ -30,7 +30,7 @@ const Settings = () => {
           <Streamform />
         </div>
         <div className='w-full'>
-          <LivePreview onGoLive={handleGoLive} />
+          <LivePreview />
         </div>
       </div>
       </div>

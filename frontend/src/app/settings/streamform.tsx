@@ -9,34 +9,30 @@ type StreamPlatform = {
   streamPlatform: string;
   streamUrl: string;
   streamKey: string;
+  channelID: string;
 };
 
-const STREAM_CREATION_ENDPOINT = 'https://livepeer.studio/api/stream';
+
+const STREAM_CREATION_ENDPOINT = 'https://multi-backend-mmlx.onrender.com/core/stream-target';
 
 const Streamform = () => {
-
-  const [streamPlatforms, setStreamPlatforms] = useState([
+  const [streamPlatforms, setStreamPlatforms] = useState<StreamPlatform[]>([
     {
       streamPlatform: '',
       streamUrl: '',
       streamKey: '',
+      channelID: '',
     },
   ]);
 
+  const [streamDetailsTable, setStreamDetailsTable] = useState<StreamPlatform[]>([]);
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-
-  const addStreamPlatform = () => {
-    setStreamPlatforms([...streamPlatforms, { streamUrl: '', streamPlatform: '', streamKey: '' }]);
-  };
 
   const handleStreamPlatformChange = (index: number, event: ChangeEvent<HTMLInputElement>) => {
     const newStreamPlatforms = [...streamPlatforms];
     const { name, value } = event.target;
-  
-    if (name === 'streamUrl' || name === 'streamPlatform' || name === 'streamKey') {
+
+    if (name === 'streamUrl' || name === 'streamPlatform' || name === 'streamKey' || name === 'channelID') {
       // Update the corresponding field of the platform being edited
       newStreamPlatforms[index][name] = value;
       setStreamPlatforms(newStreamPlatforms);
@@ -44,6 +40,23 @@ const Streamform = () => {
   };
 
   const handleSubmit = async () => {
+    // Create a new table row for each stream platform
+    const newStreamDetailsTable = streamPlatforms.map((platform, index) => ({
+      streamPlatform: platform.streamPlatform,
+      streamUrl: platform.streamUrl,
+      streamKey: platform.streamKey,
+      channelID: platform.channelID,
+    }));
+
+    // Set the stream details table state
+    setStreamDetailsTable((prevStreamDetails) => [...prevStreamDetails, ...newStreamDetailsTable]);
+
+    setStreamPlatforms([{ streamPlatform: '', streamUrl: '', streamKey: '', channelID: '' }]);
+
+    // ...
+  };
+
+  const GoLive = async () => {
     try {
       const streamData = streamPlatforms.map((platform) => ({
         name: platform.streamPlatform,
@@ -69,7 +82,8 @@ const Streamform = () => {
   };
 
 
-  return (
+
+return (
     <>
       <div className="px-60 mt-10">
 
@@ -120,10 +134,26 @@ const Streamform = () => {
               Stream Key
             </span>
             </label>
+
+            <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+            <input
+              type="text"
+              name="channelID"
+              placeholder="Channel ID"
+              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm text-white"
+              value={platform.channelID}
+              onChange={(event) => handleStreamPlatformChange(index, event)}
+            />
+            <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-white transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+              Channel ID
+            </span>
+            </label>
+
           </div>
 
+          
+
           <div className="flex flex-row justify-center items-center">
-        <Link href="/live">
           <button
             className="relative block group items-center"
             onClick={handleSubmit}
@@ -137,8 +167,45 @@ const Streamform = () => {
           </div>
           </div>
           </button>
-        </Link>
         </div>
+
+        {streamDetailsTable.length > 0 && (
+          <div className="mt-10">
+            <h2 className="text-xl font-bold text-white">Stream Details</h2>
+            <div className="overflow-x-auto">
+              <table className="table-auto min-w-full mt-2">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-2 bg-gray-200">Platform</th>
+                    <th className="px-4 py-2 bg-gray-200">URL</th>
+                    <th className="px-4 py-2 bg-gray-200">Key</th>
+                    <th className="px-4 py-2 bg-gray-200">Channel ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {streamDetailsTable.map((platform, index) => (
+                    <tr key={index}>
+                      <td className="border px-4 py-2 text-white">{platform.streamPlatform}</td>
+                      <td className="border px-4 py-2 text-white">{platform.streamUrl}</td>
+                      <td className="border px-4 py-2 text-white">{platform.streamKey}</td>
+                      <td className="border px-4 py-2 text-white">{platform.channelID}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+          <div className="mt-4">
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+              onClick={GoLive}
+            >
+            GO-LIVE
+            </button>
+          </div>
+
 
         </div>
         </div>
