@@ -58,5 +58,4 @@ export const streamTargetSchema = Joi.object({
 
 export const PatchStreamSchema = Joi.object({
   streamId: Joi.string().uuid().required(),
-  lastSeen: Joi.number().greater(978307200).required(),
 });
