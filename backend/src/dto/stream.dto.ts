@@ -68,6 +68,5 @@ export class CreateStreamTargetDto {
 // Update "lastSeen" field in stream
 export class PatchStreamDto {
   public streamId: string;
-  public lastSeen: string;
 }
 //----------------------- PATCH REQUEST DTOs END ----------------------------------//

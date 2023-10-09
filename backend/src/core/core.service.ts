@@ -14,6 +14,7 @@ import {
   ExceptionHandler,
   NotFoundException,
 } from 'src/responses/errors';
+import { currentEpoch } from 'utils/utils';
 
 @Injectable()
 export class CoreService {
@@ -159,12 +160,14 @@ export class CoreService {
   }
 
   async patchStream(patchStreamDto: PatchStreamDto): Promise<Stream> {
+    const lastSeen = currentEpoch().toString();
+
     return this.streamService.updateStream({
       where: {
         id: patchStreamDto.streamId,
       },
       data: {
-        lastSeen: patchStreamDto.lastSeen,
+        lastSeen,
       },
     });
   }
