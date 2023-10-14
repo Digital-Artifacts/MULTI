@@ -63,13 +63,6 @@ export default function Home() {
 </div>
 
 
-
-
-
-
-
-
-
       <div className="flex justify-center mt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
