@@ -18,7 +18,7 @@ const LivePreview = () => {
       ) : (
         <Broadcast
           title="You, Live (Preview)"
-          streamKey="0544-ghxt-e2n6-f4y3"
+          streamKey="4ef3-wzvi-zxzc-ydve"
           aspectRatio="1to1"
           objectFit="cover"
           showPipButton={true}

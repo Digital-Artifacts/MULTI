@@ -4,7 +4,6 @@ import React, { useState, ChangeEvent } from 'react';
 import Link from 'next/link';
 import Axios from 'axios'; 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'; 
-import Multistreams from '../live/multistreams';
 
 type StreamPlatform = {
   streamApp: string;
@@ -13,11 +12,16 @@ type StreamPlatform = {
   channelID: string;
 };
 
+type StreamformProps = {
+  streamTargets: StreamPlatform[];
+  setStreamTargets: React.Dispatch<React.SetStateAction<StreamPlatform[]>>;
+};
+
 const STREAM_CREATION_ENDPOINT = 'https://multi-backend-mmlx.onrender.com/core/stream-target';
 
 const USER_ID = process.env.USER_ID;
 
-const Streamform = () => {
+const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets }) => {
   const [streamPlatform, setStreamPlatform] = useState<StreamPlatform>({
     streamApp: '',
     streamUrl: '',
@@ -26,6 +30,7 @@ const Streamform = () => {
   });
 
   const [streamCreationError, setStreamCreationError] = useState<string | null>(null);
+  // const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([])
 
   const handleStreamPlatformChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -48,9 +53,10 @@ const Streamform = () => {
       console.log('Server Response:', response);
 
       if (response.status === 200 || response.status === 201) {
-        const { streamId } = response.data.id;
-        console.log('Stream created successfully with ID:', streamId);
+        const { id } = response.data;
+        console.log('Stream created successfully with ID:', id);
         setStreamCreationError(null); // Clear any previous error message
+        setStreamTargets([...streamTargets, streamPlatform])
       } else {
         console.error('Error creating stream. Server response:', response.data.status, response.data.message);
         setStreamCreationError('An error occurred while creating the stream. Please try again later.');
@@ -71,7 +77,7 @@ const Streamform = () => {
 
   return (
     <>
-      <div className="px-60 mt-10">
+      <div className="px-60 mt-110">
         <div key="0" className="mb-8">
           <div className="h-32 rounded-lg">
             <div className="p-1 shadow-xl text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl">
@@ -153,6 +159,30 @@ const Streamform = () => {
           </div>
         </div>
       </div>
+
+      <div className="mt-10">
+        <table className="table-auto w-full">
+          <thead>
+            <tr>
+              <th className="px-4 py-2">Stream App</th>
+              <th className="px-4 py-2">Stream URL</th>
+              <th className="px-4 py-2">Stream Key</th>
+              <th className="px-4 py-2">Channel ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {streamTargets.map((target, index) => (
+              <tr key={index}>
+                <td className="border px-4 py-2">{target.streamApp}</td>
+                <td className="border px-4 py-2">{target.streamUrl}</td>
+                <td className="border px-4 py-2">{target.streamKey}</td>
+                <td className="border px-4 py-2">{target.channelID}</td>
+              </tr>
+            ))}
+          </tbody> 
+        </table>
+      </div>
+
     </>
   );
 };

@@ -1,8 +1,31 @@
+'use client'
+
 import Footer from "@/components/Footer";
-import NavBar from "../components/NavBar";
+import NavBar from "@/components/NavBar";
 import Link from "next/link";
+import StreamSessionInput from "@/app/settings/StreamSessionInput";
+import Settings from "./settings/page";
+import StreamProvider from "@/context/StreamContext";
+import { useState } from "react";
+import { useStream } from "@/context/StreamContext";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+ 
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmitStreamName = (streamName: string) => {
+    console.log('Submitted Stream Session Name:', streamName);
+  }
+
+
   const features = [
     {
       title: "Broadcast to Multiple Platforms",
@@ -35,6 +58,7 @@ export default function Home() {
   ];
 
   return (
+   
     <main className="bg-purple-400">
       <NavBar />
       <div className="px-4 py-8 mt-20 text-center">
@@ -50,17 +74,26 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center items-center mt-8">
-  <Link href="/settings">
-    <div className="relative block group text-white">
+      <div
+        className="relative block group text-white"
+        onClick={openModal}
+      >
       <span className="absolute inset-0 border-2 border-white border-dashed rounded-lg"></span>
       <div className="transition bg-black border-2 border-white rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
         <div className="p-6 ">
-          <p className="mt-4 text-lg font-medium">Create Your First Multistream</p>
-        </div>
+        <p className="mt-4 text-lg font-medium">Create Your First Multistream</p>
       </div>
-    </div>
-  </Link>
-</div>
+      </div>
+      </div>
+      </div>
+
+      {isModalOpen && (
+        <StreamSessionInput onClose={closeModal} onSubmit={handleSubmitStreamName} />
+        
+      )}
+      
+      
+      
 
 
 
@@ -92,6 +125,7 @@ export default function Home() {
 
       <Footer />
     </main>
+   
     
   );
 }
