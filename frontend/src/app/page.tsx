@@ -12,20 +12,7 @@ import { motion } from "framer-motion"
 import { fadeIn, staggerContainer, zoomIn, navVariants  } from '../utils/motion';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
  
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSubmitStreamName = (streamName: string) => {
-    console.log('Submitted Stream Session Name:', streamName);
-  }
 
 
 
@@ -35,52 +22,53 @@ export default function Home() {
     <main className="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-indigo-300 to-purple-400">
     
       <NavBar />
-      
-      
-                  
-
+    
       <div className="min-h-screen sm:my-20 ">
       <div className="flex  w-full flex-wrap xl:flex-nowrap container mx-auto  justify-between  py-[2rem] z-50 ">
-        <div className="flex ml-12 sm:mt-10 flex-col    text-left px-2   ">
-          <h1 className="text-[40px] sm:text-[70px] font-bold leading-none ">
+      <div className="flex ml-12 sm:mt-10 flex-col    text-left px-2   ">
+        
+        <h1 className="text-[40px] sm:text-[70px] font-bold leading-none ">
           Welcome to MULTI.
-          </h1>
-
+        </h1>
           
-
-          <h1 className="text-4xl font-semibold flex flex-col my-4 ">
+        <h1 className="text-4xl font-semibold flex flex-col my-4 ">
             A Streaming Platform for Everyone.
-          </h1>
-          <p className="max-w-lg ">
+        </h1>
+
+        <p className="max-w-lg ">
           Multi allows you to reach a broader audience and engage with
           viewers on multiple streaming platforms simultaneously. Whether you're
           a gamer, content creator, or business professional, Multi is
           the key to expanding your online presence.{" "}
-          </p>
+        </p>
+
           <div className="flex  items-center sm:justify-center mt-18 sm:m-0 lg:justify-start ">
             <>
               <button className=" flex flex-col justify-start mt-5 ml-5  text-lg font-bold rounded  text-white ">
                 Powered By
-                <img src="256_Wordmark_White.png"
-                    width="100"
-                    height="100"
-                 />
+              <img src="256_Wordmark_White.png"
+                  width="100"
+                  height="100"
+                />
               </button>
             </>
+
+            <Link href='/settings'>
             <motion.div
-      className="box"
-      whileHover={{ scale: 1.1 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-    >
+              className="box"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
             
               <button className="px-6 py-3  border-2 mt-5 ml-10 flex items-center  sm:text-lg font-bold rounded-3xl glass transition-colors duration-500 text-white ">
-              Create Your First Multistream <img src="Vector.png" className="pl-2" />
+                Create Your First Multistream <img src="Vector.png" className="pl-2" />
               </button>
-              </motion.div>
-            
+            </motion.div>
+            </Link>
+
           </div>
-        </div>
-        <div className="h-[4 relative mb-10  xl:absolute xl:top-16 right-0">
+      </div>
+      <div className="h-[4 relative mb-10  xl:absolute xl:top-16 right-0">
           
           <img
                   src="Multi-1.png"
@@ -163,19 +151,10 @@ export default function Home() {
                 </div>
 
       <div className="flex justify-center items-center mt-8">
-      <div
-        className="relative block group text-white"
-        onClick={openModal}
-      >
-      <span className="absolute inset-0 border-2 border-white border-dashed rounded-lg"></span>
      
       </div>
-      </div>
 
-      {isModalOpen && (
-        <StreamSessionInput onClose={closeModal} onSubmit={handleSubmitStreamName} />
-        
-      )}
+      
     
      
 

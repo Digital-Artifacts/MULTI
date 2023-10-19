@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
 import Axios from 'axios';
-import Streamform from './streamForm';
 
 type StreamPlatform = {
     streamApp: string;
@@ -11,20 +10,22 @@ type StreamPlatform = {
 
 type StreamTitleProps = {
     streamTargets: StreamPlatform[];
+    streamName: string;
   };
 
 
-  const streamTitle: React.FC<StreamTitleProps> = ({ streamTargets }) => {
+const StreamTitle: React.FC<StreamTitleProps> = ({ streamTargets, streamName } ) => {
 
   const STREAM_CREATION_ENDPOINT = 'https://multi-backend-mmlx.onrender.com/core/stream';
+  
   const [streamError, setStreamError] = useState<string | null>(null);
+  console.log(streamName)
 
     const createMultistream = async () => {
-  
-
         try {
+            
             const data = {
-                "stream_name": "BNB",
+                "stream_name": streamName,
                 "type": "public",
                 "record": false,
                 "multistream": {
@@ -33,6 +34,7 @@ type StreamTitleProps = {
                       })),
                 }
             }
+            
             const response = await Axios.post(
                 STREAM_CREATION_ENDPOINT,
                 data
@@ -47,6 +49,7 @@ type StreamTitleProps = {
                 console.error('Error creating stream. Server response:', response.data.status, response.data.message);
                 setStreamError('An error occurred while creating the stream. Please try again later.');
             }
+        
         } catch (error) {
             // Handle errors here
             console.error('Error creating stream:', error);
@@ -54,12 +57,17 @@ type StreamTitleProps = {
         }
     }
 
+    
     return (
+      <div> 
       <div>
         <button onClick={createMultistream}>Create Multistream</button>
         {streamError && <p>{streamError}</p>}
       </div>
+        
+      
+      </div>
     );
 }
 
-export default streamTitle;
+export default StreamTitle;
