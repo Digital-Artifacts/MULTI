@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 type ModalProps = {
-  onSubmit: (streamName: string) => void;
- 
+  onSubmit: (streamName: string) => void; 
 };
 
 

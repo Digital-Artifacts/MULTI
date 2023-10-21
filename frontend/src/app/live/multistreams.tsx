@@ -25,20 +25,23 @@
 
 import React from 'react';
 
-const Multistreams= ({ channelID }) => {
+const Multistreams= () => {
   return (
     <div>
       <h2>Live Stream</h2>
-      <iframe
-        src={`https://platform1.com/embed?channelID=${channelID}`}
-        title="Platform 1 Stream"
-        width="640"
-        height="360"
-        allowFullScreen
-      ></iframe>
-    </div>
+      <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/live_stream?channel=UC2kTW6bV5Nl9sonFrAaCQ3Q"
+        //frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        >
+        </iframe>
+      </div>
   );
 };
+
+
 
 export default Multistreams;
 

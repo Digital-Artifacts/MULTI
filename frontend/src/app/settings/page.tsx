@@ -13,10 +13,10 @@ import Footer from '@/components/Footer';
 import StreamSessionInput from '@/app/settings/StreamSessionInput';
 import LivePreview from '../settings/preview';
 import Streamform from './streamForm';
-import StreamTitle from './streamTitle';
+import CreateStream from './CreateStream';
 
 type StreamPlatform = {
-  streamApp: string;
+  streamTitle: string;
   streamUrl: string;
   streamKey: string;
   channelID: string;
@@ -24,6 +24,7 @@ type StreamPlatform = {
 
 interface SettingsProps {
   streamName?: string;
+  setStreamKey: (streamKey: string) => void;
 }
 
 
@@ -32,6 +33,10 @@ const Settings: React.FC<SettingsProps> = (props) => {
   const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([]); // Define and initialize streamTargets
   
   const [streamName, setStreamName] = useState<string>("");
+
+  const [streamKey, setStreamKey] = useState<string>("");
+
+
   
 
   const handleGoLive = () => {
@@ -46,6 +51,9 @@ const Settings: React.FC<SettingsProps> = (props) => {
     console.log(streamName);
   }, [streamName]);
 
+  console.log(setStreamKey);
+
+
   return (
     <main>
 
@@ -54,25 +62,26 @@ const Settings: React.FC<SettingsProps> = (props) => {
       <LivepeerConfig client={LivepeerClient}>  
     
       <div className="mt-20">
-      <StreamSessionInput onSubmit={handleSubmitStreamName} /> {/* Pass the submit handler */}
-      <h2>{streamName} Session </h2> 
+        <StreamSessionInput onSubmit={handleSubmitStreamName} /> {/* Pass the submit handler */}
+          <h2>{streamName} Session </h2> 
  
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-18">
-      <div className='w-full'>
-        {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />} 
-        </div>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-18">
+          
+          <div className='w-full'>
+          {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />} 
+          </div>
       
-        <div>  
-        <StreamTitle streamTargets={streamTargets} streamName={streamName} />
-        </div>
-      
-        <div className='w-full'>
-        <LivePreview />
-        </div>
+          <div>  
+          <CreateStream streamTargets={streamTargets} streamName={streamName} setStreamKey={setStreamKey} />
+          </div>
+          
       </div>
       </div>
         
-      
+      <div className='w-full'>
+        <LivePreview />
+      </div>
+
       </LivepeerConfig>
 
       <Footer />

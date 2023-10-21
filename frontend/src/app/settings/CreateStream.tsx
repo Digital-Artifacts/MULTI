@@ -2,24 +2,26 @@ import React, { useState, ChangeEvent } from 'react';
 import Axios from 'axios';
 
 type StreamPlatform = {
-    streamApp: string;
+    streamTitle: string;
     streamUrl: string;
     streamKey: string;
     channelID: string;
   };
 
-type StreamTitleProps = {
+type CreateStreamProps = {
     streamTargets: StreamPlatform[];
     streamName: string;
+    setStreamKey: (streamKey: string) => void;
   };
 
 
-const StreamTitle: React.FC<StreamTitleProps> = ({ streamTargets, streamName } ) => {
+const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, setStreamKey } ) => {
 
   const STREAM_CREATION_ENDPOINT = 'https://multi-backend-mmlx.onrender.com/core/stream';
   
   const [streamError, setStreamError] = useState<string | null>(null);
-  console.log(streamName)
+  
+  
 
     const createMultistream = async () => {
         try {
@@ -30,7 +32,7 @@ const StreamTitle: React.FC<StreamTitleProps> = ({ streamTargets, streamName } )
                 "record": false,
                 "multistream": {
                     targets: streamTargets.map((target) => ({
-                        name: target.streamApp,
+                        name: target.streamTitle,
                       })),
                 }
             }
@@ -44,6 +46,11 @@ const StreamTitle: React.FC<StreamTitleProps> = ({ streamTargets, streamName } )
             if (response.status === 200 || response.status === 201) {
                 const { id } = response.data;
                 console.log('Stream created successfully with ID:', id);
+
+                const { streamKey } = response.data;
+                console.log('Stream created successfully with StreamKey:', streamKey);
+                setStreamKey(streamKey);
+
                 setStreamError(null); // Clear any previous error message
             } else {
                 console.error('Error creating stream. Server response:', response.data.status, response.data.message);
@@ -53,6 +60,7 @@ const StreamTitle: React.FC<StreamTitleProps> = ({ streamTargets, streamName } )
         } catch (error) {
             // Handle errors here
             console.error('Error creating stream:', error);
+            
             setStreamError('An error occurred while creating the stream. Please try again later.');
         }
     }
@@ -70,4 +78,4 @@ const StreamTitle: React.FC<StreamTitleProps> = ({ streamTargets, streamName } )
     );
 }
 
-export default StreamTitle;
+export default CreateStream;
