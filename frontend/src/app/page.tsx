@@ -117,7 +117,7 @@ export default function Home() {
                 Connect with Your Audience
                 </h2>
                 <p className="m-4 text-lg p-4 leading-relaxed text-center ">
-                Build a strong connection with your viewers and foster a loyal community.
+                Build a strong connection with your viewers and foster a loyal community. add some text.
                 </p>
             </article>
         </section>
