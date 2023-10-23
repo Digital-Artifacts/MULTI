@@ -68,11 +68,7 @@ export default function Home() {
 
           </div>
       </div>
-      
-      <div className=" mr-20 -mt-16 flex-end">
-        
-      <img
-                  src="3.png"
+
                   alt=""
                   width="550"
                   height="550"
