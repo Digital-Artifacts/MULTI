@@ -25,17 +25,19 @@ const Live = () => {
   return (
     <main>
     <NavBar />
-      <LivepeerConfig client={LivepeerClient}>
+
+    <Multistreams />
+      {/* <LivepeerConfig client={LivepeerClient}>
       <div>
-        <LivePage />
+         <LivePage />
     </div>
 
         <div>
-          <Multistreams />
+          
         </div>
         
       </LivepeerConfig>
-    <NavBar />
+    <NavBar /> */}
     </main>
   )
 }

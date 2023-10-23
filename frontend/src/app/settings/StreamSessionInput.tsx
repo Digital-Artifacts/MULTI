@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 
 type ModalProps = {
-  onClose?: () => void;
-  onSubmit: (streamName: string) => void;
+  onSubmit: (streamName: string) => void; 
 };
 
-const StreamSessionInput = ({ onClose, onSubmit }: ModalProps) => {
-  const [streamName, setStreamName] = useState("");
-  const [submittedStreamName, setSubmittedStreamName] = useState(""); // Add this state to store the submitted stream name
+
+const StreamSessionInput = ({ onSubmit }: ModalProps) => {
+
+  const [streamName, setStreamName] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStreamName(event.target.value);
+    
+    const inputValue = event.target.value;
+    
+    const capitalizedValue = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+    setStreamName(capitalizedValue);
+
   };
 
   const handleSubmit = () => {
     onSubmit(streamName);
-    setSubmittedStreamName(streamName); // Store the submitted stream name
+    setStreamName("")
   };
+
 
   return (
     <div className="modal">
@@ -28,14 +34,14 @@ const StreamSessionInput = ({ onClose, onSubmit }: ModalProps) => {
           value={streamName}
           onChange={handleInputChange}
         />
-        {submittedStreamName && ( // Display the submitted stream name if it's not empty
-          <h2>Submitted Stream Name: {submittedStreamName}</h2>
-        )}
       </div>
 
       <button onClick={handleSubmit}>Submit</button>
-      <button onClick={onClose}>Cancel</button>
+     
+
+      
     </div>
+    
   );
 };
 

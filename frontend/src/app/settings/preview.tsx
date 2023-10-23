@@ -1,56 +1,78 @@
-'use client'
+import { useEffect, useState } from 'react';
 
-import React, { useState } from 'react';
-import { Broadcast } from '@livepeer/react';
+const CameraPreview: React.FC = () => {
+  const [videoToggle, setVideoToggle] = useState(false);
+  const [audioToggle, setAudioToggle] = useState(false);
+  const [stream, setStream] = useState<MediaStream | null>(null);
 
-const LivePreview = () => {
-  const [previewStarted, setPreviewStarted] = useState(false);
+  useEffect(() => {
+    const startVideo = async () => {
+      if (!stream && (videoToggle || audioToggle)) {
+        try {
+          const constraints: MediaStreamConstraints = {
+            video: videoToggle,
+            audio: audioToggle,
+          };
+          const userMediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+          setStream(userMediaStream);
+        } catch (error) {
+          console.error('Error accessing camera and/or microphone:', error);
+        }
+      } else if (!videoToggle || !audioToggle) {
+        if (stream) {
+          stream.getTracks().forEach((track) => track.stop());
+          setStream(null);
+        }
+      }
+    };
 
-  const startPreview = () => {
-    // Start the preview by setting the state to true
-    setPreviewStarted(true);
-  };
+    startVideo();
+
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
+  }, [videoToggle, audioToggle]);
 
   return (
     <div>
-      {!previewStarted ? (
-        <button onClick={startPreview}>Start Preview</button>
-      ) : (
-        <Broadcast
-          title="You, Live (Preview)"
-          streamKey="4ef3-wzvi-zxzc-ydve"
-          aspectRatio="1to1"
-          objectFit="cover"
-          showPipButton={true}
-          onPlaybackStatusUpdate={(muted) => console.log(muted)}
-          theme={{
-            borderStyles: {
-              containerBorderStyle: 'solid',
-            },
-            colors: {
-              accent: '#00a55f',
-            },
-            space: {
-              controlsBottomMarginX: '10px',
-              controlsBottomMarginY: '5px',
-              controlsTopMarginX: '15px',
-              controlsTopMarginY: '10px',
-            },
-            radii: {
-              containerBorderRadius: '0px',
-            },
-          }}
-          displayMediaOptions={{
-            video: {
-              width: {
-                ideal: 1280,
-              },
-            },
-          }}
+      <h1>Camera and Microphone Preview</h1>
+      <div>
+        <label htmlFor="video-toggle">Camera:</label>
+        <input
+          type="checkbox"
+          id="video-toggle"
+          checked={videoToggle}
+          onChange={() => setVideoToggle(!videoToggle)}
         />
-      )}
+      </div>
+      <div>
+        <label htmlFor="audio-toggle">Microphone:</label>
+        <input
+          type="checkbox"
+          id="audio-toggle"
+          checked={audioToggle}
+          onChange={() => setAudioToggle(!audioToggle)}
+        />
+      </div>
+      <div style={{ position: 'relative' }}>
+        <video id="preview-video" autoPlay playsInline ref={(video) => video && (video.srcObject = stream)}></video>
+        {!videoToggle && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              background: 'black',
+            }}
+          ></div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default LivePreview;
+export default CameraPreview;
