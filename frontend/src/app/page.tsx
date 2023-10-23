@@ -9,7 +9,7 @@ import StreamProvider from "@/context/StreamContext";
 import { useState } from "react";
 import { useStream } from "@/context/StreamContext";
 import { motion } from "framer-motion"
-import { fadeIn, staggerContainer, zoomIn, navVariants  } from '../utils/motion';
+import { fadeIn, staggerContainer, zoomIn, navVariants,  slideIn, textContainer, footerVariants   } from '../utils/motion';
 
 export default function Home() {
  
@@ -68,19 +68,27 @@ export default function Home() {
 
           </div>
       </div>
-      <div className="h-[4 relative mb-10  xl:absolute xl:top-16 right-0">
-          
-          <img
-                  src="Multi-1.png"
+
                   alt=""
-                  width="700"
-                  height="700"
+                  width="550"
+                  height="550"
                   className=""
                 />
-        </div>
+       
       </div>
+        </div>
+      
+
+    
 
       <section className="mt-40 grid lg:grid-cols-2 2xl:grid-cols-4 grid-cols-1 gap-8">
+      <motion.div
+        variants={navVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+        className=" mx-auto flex flex-col"
+      >
             <article className="mx-auto max-w-sm pb-8 bg-white/25 backdrop-blur-xl  bg-cover bg-center cursor-pointer transform duration-500 hover:-translate-y-1 shadow-2xl rounded-xl">
                 <img className="mx-auto mb-20 mt-10 w-40" src="Multiple.png" alt="" />
                 <h2 className="text-center text-2xl mt-5 font-bold min-h-18 px-12">
@@ -90,17 +98,35 @@ export default function Home() {
                 Expand your audience reach by streaming to multiple platforms simultaneously.
                 </p>
             </article>
+            </motion.div>
+            
 
+            <motion.div
+        variants={footerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+        className=" mx-auto flex flex-col"
+      >
             <article className="mx-auto max-w-sm pb-8 bg-white/25 backdrop-blur-xl  bg-cover bg-center cursor-pointer transform duration-500 hover:-translate-y-1 shadow-2xl rounded-xl">
                 <img className="mx-auto mb-20 mt-10 w-40" src="Wider-Audience.png" alt="" />
                 <h2 className="text-center text-3xl mt-5 font-bold min-h-18 px-12">
                 Engage with a Wider Audience
                 </h2>
                 <p className="m-4 text-lg p-4 leading-relaxed text-center">
-                Connect and interact with viewers on various streaming platforms.
+                Connect and interact with viewers across various streaming platforms.
                 </p>
             </article>
 
+            </motion.div>
+
+            <motion.div
+        variants={navVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+        className=" mx-auto flex flex-col"
+      >
             <article className="mx-auto max-w-sm pb-8 bg-white/25 backdrop-blur-xl   bg-cover bg-center cursor-pointer transform duration-500 hover:-translate-y-1 shadow-2xl rounded-xl">
                 <img className="mx-auto mb-20 mt-10 w-40" src="stream.png" alt="" />
                 <h2 className="text-center text-3xl mt-5 font-bold min-h-18 px-12">
@@ -111,6 +137,15 @@ export default function Home() {
                 </p>
             </article>
 
+            </motion.div>
+
+            <motion.div
+        variants={footerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: false, amount: 0.25 }}
+        className=" mx-auto flex flex-col"
+      >
             <article className="mx-auto max-w-sm pb-8 bg-white/25 backdrop-blur-xl  bg-cover bg-center cursor-pointer transform duration-500 hover:-translate-y-1 shadow-2xl rounded-xl">
                 <img className="mx-auto mb-20 mt-10 w-40" src="ConnectAudience.png" alt="" />
                 <h2 className="text-center text-3xl mt-5 font-bold min-h-18 px-12">
@@ -120,7 +155,10 @@ export default function Home() {
                 Build a strong connection with your viewers and foster a loyal community. add some text.
                 </p>
             </article>
+            </motion.div>
         </section>
+      
+
    
       {/* <div className="flex justify-center mt-40">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
