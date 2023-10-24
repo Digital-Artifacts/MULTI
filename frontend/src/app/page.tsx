@@ -42,45 +42,44 @@ export default function Home() {
           the key to expanding your online presence.{" "}
         </p>
 
-          <div className="flex  items-center sm:justify-center mt-18 sm:m-0 lg:justify-start ">
-            <>
-              <button className=" flex flex-col justify-start mt-5 ml-5  text-lg font-bold rounded  text-white ">
-                Powered By
-              <img src="256_Wordmark_White.png"
-                  width="100"
-                  height="100"
-                />
-              </button>
-            </>
+        <div className="flex  items-center sm:justify-center mt-18 sm:m-0 lg:justify-start ">
+          <>
+          <button className=" flex flex-col justify-start mt-5 ml-5  text-lg font-bold rounded  text-white ">
+              Powered By
+          <img src="256_Wordmark_White.png"
+            width="100"
+            height="100"
+          />
+          </button>
+          </>
 
-            <Link href='/settings'>
-            <motion.div
-              className="box"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-            
-              <button className="px-6 py-3  border-2 mt-5 ml-10 flex items-center  sm:text-lg font-bold rounded-3xl glass transition-colors duration-500 text-white ">
-                Create Your First Multistream <img src="Vector.png" className="pl-2" />
-              </button>
-            </motion.div>
-            </Link>
-
-          </div>
-      </div>
-
-                  alt=""
-                  width="550"
-                  height="550"
-                  className=""
-                />
-       
-      </div>
+          <Link href='/settings'>
+          <motion.div
+            className="box"
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >  
+            <button className="px-6 py-3  border-2 mt-5 ml-10 flex items-center  sm:text-lg font-bold rounded-3xl glass transition-colors duration-500 text-white ">
+              Create Your First Multistream <img src="Vector.png" className="pl-2" />
+            </button>
+          </motion.div>
+          </Link>
         </div>
-      
-
+      </div>
     
-
+      <div className=" mr-20 -mt-16 flex-end">
+      <img
+        src="3.png"
+        alt=""
+        width="700"
+        height="700"
+        // width="550"
+        // height="550"
+        className=""
+      />
+      </div>
+      </div>
+      
       <section className="mt-40 grid lg:grid-cols-2 2xl:grid-cols-4 grid-cols-1 gap-8">
       <motion.div
         variants={navVariants}
