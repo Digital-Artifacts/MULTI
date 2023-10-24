@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import Axios from 'axios';
+import Link from 'next/link';
 
 type StreamPlatform = {
     streamTitle: string;
@@ -11,11 +12,12 @@ type StreamPlatform = {
 type CreateStreamProps = {
     streamTargets: StreamPlatform[];
     streamName: string;
+    streamKey: string;
     setStreamKey: (streamKey: string) => void;
   };
 
 
-const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, setStreamKey } ) => {
+const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, streamKey, setStreamKey } ) => {
 
   const STREAM_CREATION_ENDPOINT = 'https://multi-backend-mmlx.onrender.com/core/stream';
   
@@ -47,9 +49,10 @@ const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, 
                 const { id } = response.data;
                 console.log('Stream created successfully with ID:', id);
 
-                const { streamKey } = response.data;
+                const {streamKey} = response.data;
                 console.log('Stream created successfully with StreamKey:', streamKey);
-                setStreamKey(streamKey);
+                setStreamKey(streamKey)
+                
 
                 setStreamError(null); // Clear any previous error message
             } else {
@@ -69,8 +72,10 @@ const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, 
     return (
       <div> 
       <div>
+      <Link href='/live'>
         <button onClick={createMultistream}>Create Multistream</button>
         {streamError && <p>{streamError}</p>}
+      </Link>
       </div>
         
       

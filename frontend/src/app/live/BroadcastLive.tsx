@@ -1,15 +1,20 @@
-'use client'
-
-import React, { useState } from 'react';
+import React from 'react'
 import { Broadcast } from '@livepeer/react';
 
-const LivePreview = () => {
+type BroadcastProps = {
+  streamKey: string;
+  streamName: string;
+}
 
+
+const BroadcastLive: React.FC<BroadcastProps> = ({ streamKey, streamName  }) => {
+  console.log(streamKey)
+  
   return (
     <div>
         <Broadcast
-          title="You, Live (Preview)"
-          streamKey="2790-8ljg-8mmv-1tx6"
+          title={streamName}
+          streamKey= {streamKey}
           aspectRatio="1to1"
           objectFit="cover"
           showPipButton={true}
@@ -41,6 +46,6 @@ const LivePreview = () => {
         />
     </div>
   );
-};
+}
 
-export default LivePreview;
+export default BroadcastLive

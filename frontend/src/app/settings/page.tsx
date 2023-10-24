@@ -15,6 +15,7 @@ import LivePreview from '../settings/preview';
 import Streamform from './streamForm';
 import CreateStream from './CreateStream';
 
+
 type StreamPlatform = {
   streamTitle: string;
   streamUrl: string;
@@ -24,7 +25,7 @@ type StreamPlatform = {
 
 interface SettingsProps {
   streamName?: string;
-  setStreamKey: (streamKey: string) => void;
+  streamKey: string;
 }
 
 
@@ -51,7 +52,7 @@ const Settings: React.FC<SettingsProps> = (props) => {
     console.log(streamName);
   }, [streamName]);
 
-  console.log(setStreamKey);
+  console.log(streamKey);
 
 
   return (
@@ -72,15 +73,19 @@ const Settings: React.FC<SettingsProps> = (props) => {
           </div>
       
           <div>  
-          <CreateStream streamTargets={streamTargets} streamName={streamName} setStreamKey={setStreamKey} />
+          <CreateStream streamTargets={streamTargets} streamName={streamName} streamKey={streamKey} setStreamKey={setStreamKey} />
           </div>
           
+            
+          
+        </div>
+
       </div>
-      </div>
-        
-      <div className='w-full'>
+
+         
+       {/* <div className='w-full'>
         <LivePreview />
-      </div>
+      </div>  */}
 
       </LivepeerConfig>
 
