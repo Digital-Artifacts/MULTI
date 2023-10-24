@@ -4,18 +4,9 @@ import React, { useState } from 'react';
 import { Broadcast } from '@livepeer/react';
 
 const LivePreview = () => {
-  const [previewStarted, setPreviewStarted] = useState(false);
-
-  const startPreview = () => {
-    // Start the preview by setting the state to true
-    setPreviewStarted(true);
-  };
 
   return (
     <div>
-      {!previewStarted ? (
-        <button onClick={startPreview}>Start Preview</button>
-      ) : (
         <Broadcast
           title="You, Live (Preview)"
           streamKey="2790-8ljg-8mmv-1tx6"
@@ -48,7 +39,6 @@ const LivePreview = () => {
             },
           }}
         />
-      )}
     </div>
   );
 };
