@@ -15,6 +15,7 @@ import LivePreview from '../settings/preview';
 import Streamform from './streamForm';
 import CreateStream from './CreateStream';
 
+
 type StreamPlatform = {
   streamTitle: string;
   streamUrl: string;
@@ -55,36 +56,41 @@ const Settings: React.FC<SettingsProps> = (props) => {
 
 
   return (
-    <main>
+    <main className="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-indigo-300 to-purple-400">
 
-      <NavBar /> 
+      <NavBar />
 
-      <LivepeerConfig client={LivepeerClient}>  
-    
-      <div className="mt-20">
-        <StreamSessionInput onSubmit={handleSubmitStreamName} /> {/* Pass the submit handler */}
-          <h2>{streamName} Session </h2> 
- 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-18">
-          
-          <div className='w-full'>
-          {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />} 
-          </div>
-      
-          <div>  
-          <CreateStream streamTargets={streamTargets} streamName={streamName} setStreamKey={setStreamKey} />
-          </div>
-          
-      </div>
-      </div>
+      <LivepeerConfig client={LivepeerClient}>
+
+        <div className="ml-56 mt-20">
+          <StreamSessionInput onSubmit={handleSubmitStreamName} /> {/* Pass the submit handler */}
+          <h2>{streamName} Session </h2>
+        </div>
+
+
+
+        <div className='w-1/2'>
+          {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />}
+        </div>
+
         
-      <div className='w-full'>
+          <div className="ml-80 mt-20 ">
+         
+            <div
+            className = "px-3 py-1 w-36 border-2  flex items-center  sm:text-lg font-bold rounded-2xl glass transition-colors duration-500 text-white"
+            >
+            <CreateStream streamTargets={streamTargets} streamName={streamName} setStreamKey={setStreamKey} />
+            </div>
+           
+
+      </div>
+     
+
+      <div className='mt-20 w-full'>
         <LivePreview />
       </div>
 
-      </LivepeerConfig>
-
-      <Footer />
+    </LivepeerConfig><Footer />
 
     </main>
    

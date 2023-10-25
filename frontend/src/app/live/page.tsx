@@ -5,8 +5,9 @@ import { useState } from 'react';
 import LivepeerClient from '@/client';
 import LivePage from './livepage';
 import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 import Multistreams from './multistreams';
-import LivePreview from '../settings/preview';
+import CreateStream from '../settings/CreateStream';
 
 import {
   LivepeerConfig,
@@ -14,30 +15,29 @@ import {
   studioProvider,
 } from '@livepeer/react';
 
-const Live = () => {
-  const [isLive, setIsLive] = useState(false);
 
-  const handleGoLiveClick = () => {
-    setIsLive(true);
-  };
+
+
+const Live = () => {
+
 
 
   return (
     <main>
+    
     <NavBar />
 
     <Multistreams />
-      {/* <LivepeerConfig client={LivepeerClient}>
-      <div>
-         <LivePage />
-    </div>
+    
+    <LivepeerConfig client={LivepeerClient}>
+    <div>
+    <LivePage />
 
-        <div>
-          
-        </div>
-        
-      </LivepeerConfig>
-    <NavBar /> */}
+    </div>       
+    </LivepeerConfig>
+    
+    <Footer />
+    
     </main>
   )
 }

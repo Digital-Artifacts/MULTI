@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState, ChangeEvent } from 'react';
+import { motion } from "framer-motion"
 import Axios from 'axios';  
+
 
 type StreamPlatform = {
   streamTitle: string;
@@ -68,12 +70,15 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
 
   return (
     <>
-      <div className="px-60 mt-110">
+    
+<div className="grid grid-cols-1 grid-rows-1 gap-4 ">
+      <div className="ml-12 px-3 mt-20 ">
       <div key="0" className="mb-8">
       <div className="h-32 rounded-lg">
-      <div className="p-1 shadow-xl text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl">
-      <div className="bg-black sm:p-8 p-6 rounded-xl">
-        <div className="p-12 max-w-1.5">
+      
+      <div className=" bg-[url(https://imgur.com/kVx9fUa)] 
+bg-no-repeat rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100 ">
+        <div className="mt-10 p-12 max-w-1.5">
           
           <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
           <input
@@ -89,7 +94,7 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
           </span>
           </label>
 
-          <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+          <label className="mt-4 relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
           <input
             type="text"
             name="streamUrl"
@@ -103,7 +108,7 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
           </span>
           </label>
 
-          <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+          <label className="mt-4 relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
             <input
               type="text"
               name="streamKey"
@@ -117,7 +122,7 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
             </span>
             </label>
 
-            <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+            <label className="mt-4 relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
               <input
                 type="text"
                 name="channelID"
@@ -132,28 +137,30 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
             </label>
             
           </div>
-          <div className="flex flex-row justify-center items-center">
-            <button className="relative block group items-center" onClick={CreateStreamTarget}>
-              <span className="absolute inset-0 bg-indigo-500 rounded-lg"></span>
-              <div className="transition bg-black relative border-2 rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
-              <div className="p-2">
-                <p className="text-xl font-outerSans font-medium text-white">Submit</p>
-              </div>
-              </div>
+          <div className="flex flex-row mb-10  justify-center items-center">
+          <motion.div
+            className="box"
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >  
+            <button className="px-3 py-1  border-2  flex items-center  sm:text-lg font-bold rounded-2xl glass transition-colors duration-500 text-white " onClick={CreateStreamTarget}> 
+                Submit
             </button>
+            </motion.div>
           </div>
 
           {streamCreationError && (
           <div className="mt-4 text-red-500">{streamCreationError}</div>
           )}
           
+         
           </div>
           </div>
           </div>
           </div>
-          </div>
-
-          <div className="mt-10">
+          
+           <div className="row-start-2">
+          <div className="mt-96">
           <table className="table-auto w-full">
           <thead>
             <tr>
@@ -175,6 +182,11 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
           </tbody> 
           </table>
           </div>
+          </div> 
+          </div>
+
+
+          
     </>
   );
 };
