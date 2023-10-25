@@ -23,13 +23,13 @@ type StreamPlatform = {
   channelID: string;
 };
 
-interface LiveProps {
-  streamName?: string;
+interface LivePageProps {
+  streamName: string;
   streamKey: string;
 }
 
 
-const Live: React.FC<LiveProps> = (props) => {
+const LivePage: React.FC<LivePageProps> = (props) => {
   const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([]); // Define and initialize streamTargets
   
   const [streamName, setStreamName] = useState<string>("");
@@ -73,4 +73,4 @@ const Live: React.FC<LiveProps> = (props) => {
   )
 }
 
-export default Live
+export default LivePage
