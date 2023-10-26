@@ -61,20 +61,21 @@ const Settings: React.FC<SettingsProps> = (props) => {
       <NavBar />
 
       <LivepeerConfig client={LivepeerClient}>
-
-        <div className="ml-56 mt-20">
+      <div className="mt-20 grid grid-cols-2 grid-rows-1 gap-4">
+      <div className="">
+        <div className="w-1/2 ml-20 mt-20 ">
           <StreamSessionInput onSubmit={handleSubmitStreamName} /> {/* Pass the submit handler */}
           <h2>{streamName} Session </h2>
         </div>
 
 
 
-        <div className='w-1/2'>
+        <div className='ml-5 w-3/5'>
           {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />}
         </div>
 
         
-          <div className="ml-80 mt-20 ">
+          <div className="ml-56 mt-20 ">
          
             <div
             className = "px-3 py-1 w-36 border-2  flex items-center  sm:text-lg font-bold rounded-2xl glass transition-colors duration-500 text-white"
@@ -84,13 +85,20 @@ const Settings: React.FC<SettingsProps> = (props) => {
            
 
       </div>
+      </div>
+      
      
-
-      <div className='mt-20 w-full'>
+      <div className="">
+      <div className='mr-44 mt-20 '>
         <LivePreview />
       </div>
+      </div>
+      </div>
 
-    </LivepeerConfig><Footer />
+    </LivepeerConfig>
+    <div className="mt-20">
+    <Footer />
+    </div>
 
     </main>
    

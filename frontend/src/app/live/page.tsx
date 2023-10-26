@@ -23,18 +23,32 @@ const Live = () => {
 
 
   return (
-    <main>
+    <main className="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-indigo-300 to-purple-400">
     
     <NavBar />
+      
+<div className="mt-5 grid grid-cols-2 grid-rows-2 gap-6">
 
-    <Multistreams />
-    
-    <LivepeerConfig client={LivepeerClient}>
+    <div className=" ml-20 row-span-2 h-full   rounded-md   border border-gray-100">
+      <LivepeerConfig client={LivepeerClient}>
     <div>
     <LivePage />
 
     </div>       
     </LivepeerConfig>
+    </div>
+
+    <div className=" ml-20 row-span-2 " >
+      
+      <Multistreams /> 
+      
+    </div>
+    {/* <div className="ml-5 w-2/3 h-2/3 row-span-2 rounded-md border border-gray-100 col-start-2">TWITCH</div> */}
+</div>
+    
+
+    
+   
     
     <Footer />
     

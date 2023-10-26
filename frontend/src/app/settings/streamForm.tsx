@@ -72,12 +72,12 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
     <>
     
 <div className="grid grid-cols-1 grid-rows-1 gap-4 ">
-      <div className="ml-12 px-3 mt-20 ">
+      <div className="ml-12 px-3 mt-20  ">
       <div key="0" className="mb-8">
       <div className="h-32 rounded-lg">
       
       <div className=" bg-[url(https://imgur.com/kVx9fUa)] 
-bg-no-repeat rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100 ">
+        bg-no-repeat rounded-md bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-50 border border-gray-100 ">
         <div className="mt-10 p-12 max-w-1.5">
           
           <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">

@@ -113,7 +113,7 @@ export default function Home() {
                 Engage with a Wider Audience
                 </h2>
                 <p className="m-4 text-lg p-4 leading-relaxed text-center">
-                Connect and interact with viewers across various streaming platforms.
+                Connect and interact with viewers across various streaming <br/>  platforms.
                 </p>
             </article>
 

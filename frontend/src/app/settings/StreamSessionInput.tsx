@@ -30,7 +30,7 @@ const StreamSessionInput = ({ onSubmit }: ModalProps) => {
 
   return (
 
-    <><div className =" h-full w-1/4 bg-[url(https://ibb.co/TcBZN6C)] 
+    <><div className =" h-full  bg-[url(https://ibb.co/TcBZN6C)] 
     bg-no-repeat  rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100">
       
       <div className="flex flex-col place-content-center py-3 px-3 pb-10">
