@@ -36,8 +36,8 @@ const CameraPreview: React.FC = () => {
   }, [videoToggle, audioToggle]);
 
   return (
-    <div className="-mt-20">
-      <h1>Camera and Microphone Preview</h1>
+    <div className="-mt-14 text-2xl">
+      <h1>Live Preview</h1>
       <div>
         <label htmlFor="video-toggle">Camera:</label>
         <input

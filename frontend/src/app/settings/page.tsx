@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import {
   LivepeerConfig,
   createReactClient,
@@ -71,7 +72,7 @@ const Settings: React.FC<SettingsProps> = (props) => {
           <h1 className="text-2xl">{streamName} Session</h1>
         </div>
 
-        <div className='ml-5 w-4/5'>
+        <div className='ml-1 w-4/5'>
         {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />}
         </div>
                   
@@ -92,7 +93,12 @@ const Settings: React.FC<SettingsProps> = (props) => {
         </div> 
 
        
-        <h1>{streamingKey}</h1>
+        <h1 className="text-2xl mt-1 border-2 border-indigo-600 p-1 rounded-md shadow-md">
+              Copy StreamKey: <span className="text-indigo-600 font-bold">{streamingKey}</span>
+              <Link href='/live'>
+                <button className="px-3 py-1 w-36 border-2  flex items-center  sm:text-lg font-bold rounded-2xl glass transition-colors duration-500 text-black">Go Live</button>
+              </Link>
+            </h1>
        
                 
            

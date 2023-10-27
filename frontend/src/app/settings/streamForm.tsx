@@ -35,6 +35,15 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
     setStreamPlatform({ ...streamPlatform, [name]: value });
   };
 
+  const clearForm = () => {
+    setStreamPlatform({
+      streamTitle: '',
+      streamUrl: '',
+      streamKey: '',
+      channelID: '',
+    });
+  };
+
   const CreateStreamTarget = async () => {
     try {
       const streamData = {
@@ -65,14 +74,7 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
       console.error('Error creating stream:', error);
     }
 
-    // const clearForm = () => {
-    //   setStreamPlatform({
-    //     streamTitle: '',
-    //     streamUrl: '',
-    //     streamKey: '',
-    //     channelID: '',
-    //   });
-    // };
+   
 
   };
 
@@ -152,14 +154,14 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
               </div>
             </button>
 
-            {/* <button className="relative block group items-center" onClick={clearForm}>
+            <button className="relative block group items-center" onClick={clearForm}>
                 <span className="absolute inset-0 bg-red-500 rounded-lg"></span>
                 <div className="transition bg-black relative border-2 rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
                   <div className="p-2">
                     <p className="text-xl font-outerSans font-medium text-white">Clear</p>
                   </div>
                 </div>
-            </button> */}
+            </button>
           </div>
 
           {streamCreationError && (

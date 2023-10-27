@@ -24,16 +24,7 @@ const   BroadcastLive = () => {
   return (
     <div>
 
-``````<div>
-        <input
-          type="text"
-          placeholder="Enter Stream Key"
-          value={streamKey}
-          onChange={handleStreamKeyChange}
-        />
-        <button onClick={handleSubmit}>Submit</button>
-      
-      </div>
+     
 
         <Broadcast
           title= "Multistreaming Live"
@@ -67,6 +58,17 @@ const   BroadcastLive = () => {
             },
           }}
         />
+
+      <div>
+        <input
+          type="text"
+          placeholder="Enter Stream Key"
+          value={streamKey}
+          onChange={handleStreamKeyChange}
+        />
+        <button onClick={handleSubmit}>Stream</button>
+      
+      </div>
     </div>
   );
 }

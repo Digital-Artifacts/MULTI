@@ -76,11 +76,7 @@ const LivePage: React.FC<LivePageProps> = (props) => {
     <div className=" ml-20 row-span-2 h-full   rounded-md   border border-gray-100">
     <LivepeerConfig client={LivepeerClient}>
 
-    {/* {renderSettings && ( */}
-            <div className='w-full'>
-            <CreateStream streamTargets={streamTargets} streamName={streamName} streamerKey={handleStreamKey} />
-            </div>
-          {/* )} */}
+   
 
 
     <div>
