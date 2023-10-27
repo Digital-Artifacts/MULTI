@@ -1,20 +1,43 @@
 import React from 'react'
+import { useState, ChangeEvent } from 'react';
 import { Broadcast } from '@livepeer/react';
-
-type BroadcastProps = {
-  streamKey: string;
-  streamName: string;
-}
+import Settings from '../settings/page';
 
 
-const BroadcastLive: React.FC<BroadcastProps> = ({ streamKey, streamName  }) => {
-  console.log(streamKey)
+
+
+const   BroadcastLive = () => {
+  const [streamKey, setStreamKey] = useState('');
+
+  const handleStreamKeyChange = (event: ChangeEvent<HTMLInputElement>) => { // Explicitly type the event parameter
+    setStreamKey(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // You can perform any actions here when the form is submitted.
+    // For now, let's just log the streamKey.
+    console.log('Stream Key:', streamKey);
+  };
+
+
   
   return (
     <div>
+
+``````<div>
+        <input
+          type="text"
+          placeholder="Enter Stream Key"
+          value={streamKey}
+          onChange={handleStreamKeyChange}
+        />
+        <button onClick={handleSubmit}>Submit</button>
+      
+      </div>
+
         <Broadcast
-          title={streamName}
-          streamKey= {streamKey}
+          title= "Multistreaming Live"
+          streamKey={streamKey}
           aspectRatio="1to1"
           objectFit="cover"
           showPipButton={true}

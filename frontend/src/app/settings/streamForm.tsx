@@ -64,15 +64,25 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
       // Handle errors here
       console.error('Error creating stream:', error);
     }
+
+    // const clearForm = () => {
+    //   setStreamPlatform({
+    //     streamTitle: '',
+    //     streamUrl: '',
+    //     streamKey: '',
+    //     channelID: '',
+    //   });
+    // };
+
   };
 
   return (
     <>
-      <div className="px-60 mt-110">
+      <div className="grid grid-cols-1 grid-rows-1 gap-4 ">
+      <div className="ml-12 px-3 mt-11">
       <div key="0" className="mb-8">
-      <div className="h-32 rounded-lg">
-      <div className="p-1 shadow-xl text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl">
-      <div className="bg-black sm:p-8 p-6 rounded-xl">
+      <div className="h-22 rounded-lg">     
+      <div className=" bg-[url(https://imgur.com/kVx9fUa)]  bg-no-repeat rounded-md bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-50 border border-gray-100 ">
         <div className="p-12 max-w-1.5">
           
           <label className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
@@ -141,19 +151,35 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
               </div>
               </div>
             </button>
+
+            {/* <button className="relative block group items-center" onClick={clearForm}>
+                <span className="absolute inset-0 bg-red-500 rounded-lg"></span>
+                <div className="transition bg-black relative border-2 rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+                  <div className="p-2">
+                    <p className="text-xl font-outerSans font-medium text-white">Clear</p>
+                  </div>
+                </div>
+            </button> */}
           </div>
 
           {streamCreationError && (
           <div className="mt-4 text-red-500">{streamCreationError}</div>
           )}
+
+
           
           </div>
+          
+         
           </div>
+          
           </div>
+          
           </div>
+          
           </div>
 
-          <div className="mt-10">
+          <div className="mb4 mt-28 ml-30">
           <table className="table-auto w-full">
           <thead>
             <tr>
@@ -175,6 +201,8 @@ const Streamform: React.FC<StreamformProps> = ({ streamTargets, setStreamTargets
           </tbody> 
           </table>
           </div>
+
+          
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const CameraPreview: React.FC = () => {
-  const [videoToggle, setVideoToggle] = useState(false);
+  const [videoToggle, setVideoToggle] = useState(true);
   const [audioToggle, setAudioToggle] = useState(false);
   const [stream, setStream] = useState<MediaStream | null>(null);
 
@@ -36,7 +36,7 @@ const CameraPreview: React.FC = () => {
   }, [videoToggle, audioToggle]);
 
   return (
-    <div>
+    <div className="-mt-20">
       <h1>Camera and Microphone Preview</h1>
       <div>
         <label htmlFor="video-toggle">Camera:</label>
@@ -57,18 +57,23 @@ const CameraPreview: React.FC = () => {
         />
       </div>
       <div style={{ position: 'relative' }}>
-        <video id="preview-video" autoPlay playsInline ref={(video) => video && (video.srcObject = stream)}></video>
+      <video  className="  flex justify-center items-center font-bold text-lg 
+          bg-no-repeat rounded-md bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-50 border border-gray-100 " id="preview-video" autoPlay playsInline ref={(video) => video && (video.srcObject = stream)}></video>
         {!videoToggle && (
+
           <div
+          className=" flex justify-center items-center font-bold text-lg 
+          bg-no-repeat rounded-md bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-50 border border-gray-100 "
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
-              background: 'black',
+              width: '100%', 
+              height: '300%',
+              background: 'inherit',
+            
             }}
-          ></div>
+            >LIVE PREVIEW 🎥</div>
         )}
       </div>
     </div>

@@ -25,8 +25,11 @@ const StreamSessionInput = ({ onSubmit }: ModalProps) => {
 
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className=" h-full  bg-[url(https://ibb.co/TcBZN6C)] 
+    bg-no-repeat  rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100">
+
+      <div className="flex flex-col place-content-center py-3 px-3 pb-10">
+
         <h2>Enter Stream Session Name</h2>
         <input
           type="text"

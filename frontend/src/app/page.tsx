@@ -5,9 +5,8 @@ import NavBar from "@/components/NavBar";
 import Link from "next/link";
 import StreamSessionInput from "@/app/settings/StreamSessionInput";
 import Settings from "./settings/page";
-import StreamProvider from "@/context/StreamContext";
 import { useState } from "react";
-import { useStream } from "@/context/StreamContext";
+
 import { motion } from "framer-motion"
 import { fadeIn, staggerContainer, zoomIn, navVariants,  slideIn, textContainer, footerVariants   } from '../utils/motion';
 
@@ -113,7 +112,7 @@ export default function Home() {
                 Engage with a Wider Audience
                 </h2>
                 <p className="m-4 text-lg p-4 leading-relaxed text-center">
-                Connect and interact with viewers across various streaming platforms.
+                Connect and interact with viewers across various streaming <br/>  platforms
                 </p>
             </article>
 

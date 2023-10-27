@@ -30,6 +30,7 @@
     "react-dom": "18.2.0",
     "react-router-dom": "^6.16.0",
     "tailwindcss": "3.3.3",
+    "twitch-js": "^2.0.0-beta.45",
     "typescript": "5.2.2"
   },
   "devDependencies": {

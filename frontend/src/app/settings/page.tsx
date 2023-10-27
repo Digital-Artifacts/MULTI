@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   LivepeerConfig,
   createReactClient,
@@ -24,8 +24,8 @@ type StreamPlatform = {
 };
 
 interface SettingsProps {
-  streamName?: string;
-  streamKey: string;
+  streamName: string;
+  streamingKey: string;
 }
 
 
@@ -33,63 +33,79 @@ const Settings: React.FC<SettingsProps> = (props) => {
   
   const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([]); // Define and initialize streamTargets
   
-  const [streamName, setStreamName] = useState<string>("");
+  const [streamName, setStreamName] = useState('');
 
-  const [streamKey, setStreamKey] = useState<string>("");
+  const [streamingKey, setStreamingKey] = useState('');
 
-
-  
-
-  const handleGoLive = () => {
-    console.log("Going Live");
-  };
+ 
 
   const handleSubmitStreamName = (name: string) => {
-    setStreamName(name); // Update streamName when submitted
+    setStreamName(name); 
+
   };
 
-  useEffect(() => {
-    console.log(streamName);
-  }, [streamName]);
+  const handleStreamKey = (key: string) => {
+    setStreamingKey(key);
 
-  console.log(streamKey);
+ 
+  }
 
+  console.log(streamName)
+  console.log(streamingKey)
+
+ 
 
   return (
-    <main>
+    
+    <main className="bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-indigo-300 to-purple-400">
 
       <NavBar /> 
 
       <LivepeerConfig client={LivepeerClient}>  
-    
-      <div className="mt-20">
-        <StreamSessionInput onSubmit={handleSubmitStreamName} /> {/* Pass the submit handler */}
-          <h2>{streamName} Session </h2> 
- 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-18">
-          
-          <div className='w-full'>
-          {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />} 
-          </div>
+
       
-          <div>  
-          <CreateStream streamTargets={streamTargets} streamName={streamName} streamKey={streamKey} setStreamKey={setStreamKey} />
-          </div>
-          
-            
-          
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-18">
+      <div className="ml-56 mt-20">
+        <div className="">
+          <StreamSessionInput onSubmit={handleSubmitStreamName} /> {/* Pass the submit handler */}
+          <h1 className="text-2xl">{streamName} Session</h1>
         </div>
 
+        <div className='ml-5 w-4/5'>
+        {streamName && <Streamform streamTargets={streamTargets} setStreamTargets={setStreamTargets} />}
+        </div>
+                  
+        <div className="ml-56 mt-20 ">
+        <div
+        className = "px-3 py-1 w-36 border-2  flex items-center  sm:text-lg font-bold rounded-2xl glass transition-colors duration-500 text-white">
+          <CreateStream streamTargets={streamTargets} streamName={streamName} streamerKey={handleStreamKey} />
+        </div> 
+        </div>
+
+        
+
+
+      </div>
+      <div className=""> 
+        <div className='mt20 mt-20 '>
+          <LivePreview />
+        </div> 
+
+       
+        <h1>{streamingKey}</h1>
+       
+                
+           
+        </div>
+          
+      
       </div>
 
-         
-       {/* <div className='w-full'>
-        <LivePreview />
-      </div>  */}
+      </LivepeerConfig>  
 
-      </LivepeerConfig>
-
-      <Footer />
+      <div className="mt-20">
+        <Footer />
+      </div>
 
     </main>
    

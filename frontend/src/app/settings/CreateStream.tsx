@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Link from 'next/link';
 
@@ -12,20 +12,28 @@ type StreamPlatform = {
 type CreateStreamProps = {
     streamTargets: StreamPlatform[];
     streamName: string;
-    streamKey: string;
-    setStreamKey: (streamKey: string) => void;
+    streamerKey: (streamingKey: string) => void;
   };
 
 
-const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, streamKey, setStreamKey } ) => {
+const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, streamerKey } ) => {
 
   const STREAM_CREATION_ENDPOINT = 'https://multi-backend-mmlx.onrender.com/core/stream';
   
   const [streamError, setStreamError] = useState<string | null>(null);
   
+  const [streamingKey, setStreamingKey] = useState('');
+  
   
 
-    const createMultistream = async () => {
+  useEffect(() => {
+    // This useEffect will run whenever streamingKey is updated
+    console.log('Streaming Key has been updated:', streamingKey);
+    streamerKey(streamingKey)
+  }, [streamingKey]);
+
+    const createMultistream = async () => {    
+        
         try {
             
             const data = {
@@ -51,8 +59,8 @@ const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, 
 
                 const {streamKey} = response.data;
                 console.log('Stream created successfully with StreamKey:', streamKey);
-                setStreamKey(streamKey)
-                
+                setStreamingKey(streamKey)
+              
 
                 setStreamError(null); // Clear any previous error message
             } else {
@@ -72,10 +80,15 @@ const CreateStream: React.FC<CreateStreamProps> = ({ streamTargets, streamName, 
     return (
       <div> 
       <div>
-      <Link href='/live'>
-        <button onClick={createMultistream}>Create Multistream</button>
+      
+      
+      <div>
+      <button onClick={createMultistream}>Generate Stream Key</button>
         {streamError && <p>{streamError}</p>}
-      </Link>
+      </div>
+       
+      
+      
       </div>
         
       
