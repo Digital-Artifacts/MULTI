@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-type ModalProps = {
+export type ModalProps = {
   onSubmit: (streamName: string) => void; 
 };
 

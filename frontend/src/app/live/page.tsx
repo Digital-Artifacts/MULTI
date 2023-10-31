@@ -7,8 +7,8 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Multistreams from './multistreams';
 import BroadcastLive from './BroadcastLive';
-import Settings from '../settings/page';
-import CreateStream from '../settings/CreateStream';
+import { StreamPlatform } from '../types';
+
 
 import {
   LivepeerConfig,
@@ -16,54 +16,54 @@ import {
   studioProvider,
 } from '@livepeer/react';
 
-type StreamPlatform = {
-  streamTitle: string;
-  streamUrl: string;
-  streamKey: string;
-  channelID: string;
-};
+// export type StreamPlatform = {
+//   streamTitle: string;
+//   streamUrl: string;
+//   streamKey: string;
+//   channelID: string;
+// };
 
 
-interface LivePageProps {
-  streamName: string;
-  streamingKey: string;
-}
+// export type PageProps = {
+//   streamName: string;
+//   streamingKey: string;
+// }
 
 
 
-const LivePage: React.FC<LivePageProps> = (props) => {
+const LivePage = () => {
 
-  const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([]); // Define and initialize streamTargets
+  // const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([]); // Define and initialize streamTargets
 
-  const [streamName, setStreamName] = useState('');
+  // const [streamName, setStreamName] = useState('');
 
-  const [streamingKey, setStreamingKey] = useState('');
+  // const [streamingKey, setStreamingKey] = useState('');
 
-  const handleStreamName = (name: string) => {
-    setStreamName(name); 
+  // const handleStreamName = (name: string) => {
+  //   setStreamName(name); 
 
-  };
+  // };
 
-  const handleStreamKey = (key: string) => {
-    (streamingKey)
-  }
+  // const handleStreamKey = (key: string) => {
+  //   (streamingKey)
+  // }
 
-  // const renderSettings = false; 
+  // // const renderSettings = false; 
+
+  // // useEffect(() => {
+  // //   // Update streamName and streamingKey when they change
+  // //   setStreamName(props.streamName);
+  // //   setStreamingKey(props.streamingKey);
+  // // }, [props.streamName, props.streamingKey]);
 
   // useEffect(() => {
-  //   // Update streamName and streamingKey when they change
-  //   setStreamName(props.streamName);
-  //   setStreamingKey(props.streamingKey);
-  // }, [props.streamName, props.streamingKey]);
+  //   // This useEffect will run whenever streamingKey is updated
+  //   console.log('Streaming Key has been updated:', streamingKey);
+  //   // streamerKey(streamingKey)
+  // }, [streamingKey]);
 
-  useEffect(() => {
-    // This useEffect will run whenever streamingKey is updated
-    console.log('Streaming Key has been updated:', streamingKey);
-    // streamerKey(streamingKey)
-  }, [streamingKey]);
-
-  console.log(streamName)
-  console.log(streamingKey)
+  // console.log(streamName)
+  // console.log(streamingKey)
 
   return (
   
@@ -104,4 +104,4 @@ const LivePage: React.FC<LivePageProps> = (props) => {
   )
 }
 
-export default LivePage
+export default LivePage;

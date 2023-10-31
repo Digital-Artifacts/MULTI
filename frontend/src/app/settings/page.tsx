@@ -17,20 +17,21 @@ import Streamform from './streamForm';
 import CreateStream from './CreateStream';
 
 
-type StreamPlatform = {
+export type StreamPlatform = {
   streamTitle: string;
   streamUrl: string;
   streamKey: string;
   channelID: string;
 };
 
-interface SettingsProps {
-  streamName: string;
-  streamingKey: string;
-}
+// export type SettingsProps = {
+//   streamName: string;
+//   streamingKey: string;
+// }
 
 
-const Settings: React.FC<SettingsProps> = (props) => {
+
+const Settings = () => {
   
   const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([]); // Define and initialize streamTargets
   

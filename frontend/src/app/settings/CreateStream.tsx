@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Link from 'next/link';
 
-type StreamPlatform = {
+export type StreamPlatform = {
     streamTitle: string;
     streamUrl: string;
     streamKey: string;
     channelID: string;
   };
 
-type CreateStreamProps = {
+export type CreateStreamProps = {
     streamTargets: StreamPlatform[];
     streamName: string;
     streamerKey: (streamingKey: string) => void;

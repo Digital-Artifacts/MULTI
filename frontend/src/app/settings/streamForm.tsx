@@ -3,14 +3,14 @@
 import React, { useState, ChangeEvent } from 'react';
 import Axios from 'axios';  
 
-type StreamPlatform = {
+export type StreamPlatform = {
   streamTitle: string;
   streamUrl: string;
   streamKey: string;
   channelID: string;
 };
 
-type StreamformProps = {
+export type StreamformProps = {
   streamTargets: StreamPlatform[];
   setStreamTargets: React.Dispatch<React.SetStateAction<StreamPlatform[]>>;
 };
