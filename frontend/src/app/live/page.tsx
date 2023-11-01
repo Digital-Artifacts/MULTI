@@ -1,13 +1,12 @@
 'use client'
 
 import React from 'react'
-import { useState, useEffect, useRef } from 'react';
 import LivepeerClient from '@/client';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import Multistreams from './multistreams';
 import BroadcastLive from './BroadcastLive';
-import { StreamPlatform } from '../types';
+
 
 
 import {
@@ -16,54 +15,8 @@ import {
   studioProvider,
 } from '@livepeer/react';
 
-// export type StreamPlatform = {
-//   streamTitle: string;
-//   streamUrl: string;
-//   streamKey: string;
-//   channelID: string;
-// };
-
-
-// export type PageProps = {
-//   streamName: string;
-//   streamingKey: string;
-// }
-
-
 
 const LivePage = () => {
-
-  // const [streamTargets, setStreamTargets] = useState<StreamPlatform[]>([]); // Define and initialize streamTargets
-
-  // const [streamName, setStreamName] = useState('');
-
-  // const [streamingKey, setStreamingKey] = useState('');
-
-  // const handleStreamName = (name: string) => {
-  //   setStreamName(name); 
-
-  // };
-
-  // const handleStreamKey = (key: string) => {
-  //   (streamingKey)
-  // }
-
-  // // const renderSettings = false; 
-
-  // // useEffect(() => {
-  // //   // Update streamName and streamingKey when they change
-  // //   setStreamName(props.streamName);
-  // //   setStreamingKey(props.streamingKey);
-  // // }, [props.streamName, props.streamingKey]);
-
-  // useEffect(() => {
-  //   // This useEffect will run whenever streamingKey is updated
-  //   console.log('Streaming Key has been updated:', streamingKey);
-  //   // streamerKey(streamingKey)
-  // }, [streamingKey]);
-
-  // console.log(streamName)
-  // console.log(streamingKey)
 
   return (
   

@@ -29,7 +29,7 @@ const   BroadcastLive = () => {
         <Broadcast
           title= "Multistreaming Live"
           streamKey={streamKey}
-          aspectRatio="1to1"
+          aspectRatio="16to9"
           objectFit="cover"
           showPipButton={true}
           onPlaybackStatusUpdate={(muted) => console.log(muted)}
