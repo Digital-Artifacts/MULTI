@@ -66,7 +66,7 @@ const   BroadcastLive = () => {
           value={streamKey}
           onChange={handleStreamKeyChange}
         />
-        <button onClick={handleSubmit}>Stream</button>
+        <button className="px-2 ml-2 mb-2 mt-1 bg-indigo-500 hover:bg-blue-700 text-white font-bold rounded" onClick={handleSubmit}>Stream</button>
       
       </div>
     </div>
