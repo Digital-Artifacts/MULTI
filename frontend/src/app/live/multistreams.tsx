@@ -41,12 +41,12 @@ const Multistreams= () => {
   return (
     <div>
       
-      <div>   
+      <div className='mb-4'>   
       <form onSubmit={youtubeSubmit}>
         <label>Embed Youtube:
-          <input type="text" placeholder="Enter Channel ID" value={youtubeID} onChange={handleYoutube} />
+          <input className='ml-2' type="text" placeholder="Enter Youtube Channel ID" value={youtubeID} onChange={handleYoutube} />
         </label>
-        <button type="submit">Submit</button>
+        <button className='ml-2 px-2 bg-indigo-500 hover:bg-blue-700 text-white font-bold rounded' type="submit">Submit</button>
       </form>
       </div>
       
@@ -63,12 +63,12 @@ const Multistreams= () => {
       </div>
       
       
-      <div>   
+      <div className='mb-4 mt-4'>   
       <form onSubmit={twitchSubmit}>
         <label>Embed Twitch:
-          <input type="text" placeholder="Enter Channel ID" value={twitchID} onChange={handleTwitch} />
+          <input className='ml-2' type="text" placeholder="Enter Twitch Username" value={twitchID} onChange={handleTwitch} />
         </label>
-        <button type="submit">Submit</button>
+        <button className='ml-2 px-2 bg-indigo-500 hover:bg-blue-700 text-white font-bold rounded' type="submit">Submit</button>
       </form>
       </div>
       
