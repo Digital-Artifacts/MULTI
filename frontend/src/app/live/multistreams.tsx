@@ -31,7 +31,7 @@ const Multistreams= () => {
   const twitchSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Construct the iframe URL with the entered channelID
-    const newTwitchSrc = `https://player.twitch.tv/?channel=${twitchID}&parent=https://multi-blue.vercel.app/`;
+    const newTwitchSrc = `https://player.twitch.tv/?channel=${twitchID}&parent=multi-blue.vercel.app&muted=true`;
     setTwitchSrc(newTwitchSrc);
   };
 
@@ -78,7 +78,7 @@ const Multistreams= () => {
         height="315" 
         src={twitchSrc}
         //frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         >
         </iframe>
        
